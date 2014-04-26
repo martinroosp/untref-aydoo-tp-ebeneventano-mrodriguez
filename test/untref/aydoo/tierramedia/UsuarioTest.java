@@ -20,8 +20,10 @@ public class UsuarioTest {
 
 		Atraccion atraccion = new Atraccion();
 		atraccion.setCosto(1000);
+		atraccion.setCoordenadasGlobalesDePosicionamiento(new Coordenada(0, 0));
 
 		usuario.setPresupuesto(2000);
+		usuario.setUbicacion(new Coordenada(0, 0));
 
 		Assert.assertTrue(usuario.puedeVisitar(atraccion));
 
@@ -32,8 +34,10 @@ public class UsuarioTest {
 
 		Atraccion atraccion = new Atraccion();
 		atraccion.setCosto(1000);
+		atraccion.setCoordenadasGlobalesDePosicionamiento(new Coordenada(0, 0));
 
 		usuario.setPresupuesto(500);
+		usuario.setUbicacion(new Coordenada(0, 0));
 
 		Assert.assertFalse(usuario.puedeVisitar(atraccion));
 
