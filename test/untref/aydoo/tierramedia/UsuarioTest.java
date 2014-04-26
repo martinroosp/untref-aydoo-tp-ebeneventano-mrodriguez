@@ -39,4 +39,16 @@ public class UsuarioTest {
 
 	}
 
+	@Test
+	public void puedeVisitarDeberiaRetornarVerdaderoSiDistanciaEsAlcanzable() {
+
+		Atraccion atraccion = new Atraccion();
+		atraccion.setCoordenadasGlobalesDePosicionamiento(new Coordenada(0, 0));
+
+		usuario.setUbicacion(new Coordenada(0, 0));
+
+		Assert.assertTrue(usuario.puedeVisitar(atraccion));
+
+	}
+
 }

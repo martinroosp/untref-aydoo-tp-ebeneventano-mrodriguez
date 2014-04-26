@@ -16,4 +16,13 @@ public class Atraccion {
 		this.costo = costo;
 	}
 
+	public Coordenada getCoordenadasGlobalesDePosicionamiento() {
+		return coordenadasGlobalesDePosicionamiento;
+	}
+
+	public void setCoordenadasGlobalesDePosicionamiento(
+			Coordenada coordenadasGlobalesDePosicionamiento) {
+		this.coordenadasGlobalesDePosicionamiento = coordenadasGlobalesDePosicionamiento;
+	}
+
 }

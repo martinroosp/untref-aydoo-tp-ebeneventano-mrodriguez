@@ -7,6 +7,7 @@ public class Usuario {
 	private double velocidadDeTraslado;
 	private TipoDeAtraccion tipoDeAtraccionPreferida;
 	private Coordenada ubicacion;
+	private Perfil perfil;
 
 	public boolean puedeVisitar(Atraccion atraccion) {
 
@@ -19,6 +20,14 @@ public class Usuario {
 
 	public void setPresupuesto(double presupuesto) {
 		this.presupuesto = presupuesto;
+	}
+
+	public Coordenada getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(Coordenada ubicacion) {
+		this.ubicacion = ubicacion;
 	}
 
 }
