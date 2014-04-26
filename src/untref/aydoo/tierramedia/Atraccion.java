@@ -2,7 +2,7 @@ package untref.aydoo.tierramedia;
 
 public class Atraccion {
 
-	private Coordenada coordenadasGlobalesDePosicionamiento;
+	private Coordenada coordenadas;
 	private double costo;
 	private int minutosNecesarios;
 	private int cupoDeVisitantesDiarios;
@@ -16,13 +16,21 @@ public class Atraccion {
 		this.costo = costo;
 	}
 
-	public Coordenada getCoordenadasGlobalesDePosicionamiento() {
-		return coordenadasGlobalesDePosicionamiento;
+	public Coordenada getCoordenadas() {
+		return coordenadas;
 	}
 
-	public void setCoordenadasGlobalesDePosicionamiento(
-			Coordenada coordenadasGlobalesDePosicionamiento) {
-		this.coordenadasGlobalesDePosicionamiento = coordenadasGlobalesDePosicionamiento;
+	public void setCoordenadas(
+			Coordenada coordenadas) {
+		this.coordenadas = coordenadas;
+	}
+
+	public int getMinutosNecesarios() {
+		return minutosNecesarios;
+	}
+
+	public void setMinutosNecesarios(int minutosNecesarios) {
+		this.minutosNecesarios = minutosNecesarios;
 	}
 
 }

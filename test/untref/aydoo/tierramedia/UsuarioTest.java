@@ -18,10 +18,12 @@ public class UsuarioTest {
 		usuario.setPresupuesto(2000);
 		usuario.setUbicacion(new Coordenada(0, 0));
 		usuario.setMinutosDisponibles(60);
+		
+		// Una persona promedio camina a 5 km/h
 		usuario.setVelocidadDeTraslado(5);
 
 		atraccion.setCosto(1000);
-		atraccion.setCoordenadasGlobalesDePosicionamiento(new Coordenada(0, 0));
+		atraccion.setCoordenadas(new Coordenada(0, 0));
 
 	}
 
@@ -52,6 +54,24 @@ public class UsuarioTest {
 	public void puedeVisitarDeberiaRetornarFalsoSiDistanciaEsInalcanzable() {
 
 		usuario.setUbicacion(new Coordenada(100, 0));
+
+		Assert.assertFalse(usuario.puedeVisitar(atraccion));
+
+	}
+	
+	@Test
+	public void puedeVisitarDeberiaRetornarVerdaderoSiTiempoEsSuficiente() {
+
+		atraccion.setMinutosNecesarios(10);
+
+		Assert.assertTrue(usuario.puedeVisitar(atraccion));
+
+	}
+	
+	@Test
+	public void puedeVisitarDeberiaRetornarFalsoSiTiempoEsInsuficiente() {
+
+		atraccion.setMinutosNecesarios(100);
 
 		Assert.assertFalse(usuario.puedeVisitar(atraccion));
 
