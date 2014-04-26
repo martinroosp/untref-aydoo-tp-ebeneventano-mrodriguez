@@ -16,23 +16,26 @@ public class GeneradorDeSugerenciasTest {
 		generadorDeSugerencias = new GeneradorDeSugerencias();
 		usuario = new Usuario();
 		distanciaMaximaEnMetros = 1000;
-		generadorDeSugerencias.setDistanciaMaximaEnMetros(distanciaMaximaEnMetros);
-		
+		generadorDeSugerencias
+				.setDistanciaMaximaEnMetros(distanciaMaximaEnMetros);
+
 	}
 
 	@Test
 	public void generarSugerencia() {
 
 		Visita visitaSugerida = generadorDeSugerencias.sugerirVisita(usuario);
-		
+
 		Assert.assertNotNull(visitaSugerida);
 
 	}
 
 	@Test
-	public void sugerirVisitaDeberiaRetornarLugarCerca() {
+	public void sugerirVisitaDeberiaRetornarLugarConDistanciaMenorAMaxima() {
 
 		Visita visitaSugerida = generadorDeSugerencias.sugerirVisita(usuario);
+
+		Assert.assertTrue(visitaSugerida.getDistanciaMaxima() <= this.distanciaMaximaEnMetros);
 
 	}
 

@@ -2,7 +2,7 @@ package untref.aydoo.tierramedia;
 
 public class Atraccion {
 
-	private Coordenada coordenadasGlobalesDePosicionamientp;
+	private Coordenada coordenadasGlobalesDePosicionamiento;
 	private double costo;
 	private int minutosNecesarios;
 	private int cupoDeVisitantesDiarios;
