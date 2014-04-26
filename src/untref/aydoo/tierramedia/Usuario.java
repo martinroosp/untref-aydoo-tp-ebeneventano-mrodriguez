@@ -8,9 +8,9 @@ public class Usuario {
 	private TipoDeAtraccion tipoDeAtraccionPreferida;
 	private Coordenada ubicacion;
 
-	public Atraccion puedeVisitar(Atraccion atraccion) {
+	public boolean puedeVisitar(Atraccion atraccion) {
 
-		return new Atraccion();
+		return true;
 	}
 
 }

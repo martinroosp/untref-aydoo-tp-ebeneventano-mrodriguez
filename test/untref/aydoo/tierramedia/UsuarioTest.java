@@ -1,5 +1,6 @@
 package untref.aydoo.tierramedia;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,7 +20,7 @@ public class UsuarioTest {
 		
 		Atraccion atraccion = new Atraccion();
 		
-		usuario.puedeVisitar(atraccion);
+		Assert.assertTrue(usuario.puedeVisitar(atraccion));
 
 	}
 }
