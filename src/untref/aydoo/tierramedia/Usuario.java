@@ -13,10 +13,10 @@ public class Usuario {
 
 		boolean presupuestoSuficiente = this.getPresupuesto() >= atraccion
 				.getCosto();
-		boolean distanciaAlcanzable = velocidadDeTraslado / 60
-				* minutosDisponibles >= getDistancia(atraccion);
+		boolean distanciaAlcanzable = getVelocidadDeTraslado() / 60
+				* getMinutosDisponibles() >= getDistancia(atraccion);
 
-		return presupuestoSuficiente;
+		return presupuestoSuficiente && distanciaAlcanzable;
 	}
 
 	public double getDistancia(Atraccion atraccion) {
@@ -46,6 +46,22 @@ public class Usuario {
 
 	public void setUbicacion(Coordenada ubicacion) {
 		this.ubicacion = ubicacion;
+	}
+
+	public double getVelocidadDeTraslado() {
+		return velocidadDeTraslado;
+	}
+
+	public void setVelocidadDeTraslado(double velocidadDeTraslado) {
+		this.velocidadDeTraslado = velocidadDeTraslado;
+	}
+
+	public int getMinutosDisponibles() {
+		return minutosDisponibles;
+	}
+
+	public void setMinutosDisponibles(int minutosDisponibles) {
+		this.minutosDisponibles = minutosDisponibles;
 	}
 
 }

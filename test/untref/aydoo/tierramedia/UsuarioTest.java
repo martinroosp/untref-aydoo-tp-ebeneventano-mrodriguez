@@ -7,23 +7,26 @@ import org.junit.Test;
 public class UsuarioTest {
 
 	private Usuario usuario;
+	private Atraccion atraccion;
 
 	@Before
 	public void before() {
 
 		usuario = new Usuario();
+		atraccion = new Atraccion();
+
+		usuario.setPresupuesto(2000);
+		usuario.setUbicacion(new Coordenada(0, 0));
+		usuario.setMinutosDisponibles(60);
+		usuario.setVelocidadDeTraslado(5);
+
+		atraccion.setCosto(1000);
+		atraccion.setCoordenadasGlobalesDePosicionamiento(new Coordenada(0, 0));
 
 	}
 
 	@Test
 	public void puedeVisitarDeberiaRetornarVerdaderoSiPresupuestoEsSuficiente() {
-
-		Atraccion atraccion = new Atraccion();
-		atraccion.setCosto(1000);
-		atraccion.setCoordenadasGlobalesDePosicionamiento(new Coordenada(0, 0));
-
-		usuario.setPresupuesto(2000);
-		usuario.setUbicacion(new Coordenada(0, 0));
 
 		Assert.assertTrue(usuario.puedeVisitar(atraccion));
 
@@ -32,12 +35,7 @@ public class UsuarioTest {
 	@Test
 	public void puedeVisitarDeberiaRetornarFalsoSiPresupuestoEsInsuficiente() {
 
-		Atraccion atraccion = new Atraccion();
-		atraccion.setCosto(1000);
-		atraccion.setCoordenadasGlobalesDePosicionamiento(new Coordenada(0, 0));
-
 		usuario.setPresupuesto(500);
-		usuario.setUbicacion(new Coordenada(0, 0));
 
 		Assert.assertFalse(usuario.puedeVisitar(atraccion));
 
@@ -46,12 +44,16 @@ public class UsuarioTest {
 	@Test
 	public void puedeVisitarDeberiaRetornarVerdaderoSiDistanciaEsAlcanzable() {
 
-		Atraccion atraccion = new Atraccion();
-		atraccion.setCoordenadasGlobalesDePosicionamiento(new Coordenada(0, 0));
-
-		usuario.setUbicacion(new Coordenada(0, 0));
-
 		Assert.assertTrue(usuario.puedeVisitar(atraccion));
+
+	}
+
+	@Test
+	public void puedeVisitarDeberiaRetornarFalsoSiDistanciaEsInalcanzable() {
+
+		usuario.setUbicacion(new Coordenada(100, 0));
+
+		Assert.assertFalse(usuario.puedeVisitar(atraccion));
 
 	}
 
