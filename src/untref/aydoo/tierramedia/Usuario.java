@@ -15,9 +15,9 @@ public class Usuario {
 				.getCosto();
 		boolean distanciaAlcanzable = getVelocidadDeTraslado() / 60
 				* getMinutosDisponibles() >= getDistancia(atraccion);
-		boolean tiempoSuficiente = this.minutosDisponibles >= (this.minutosDisponibles
-				- this.tiempoParaLlegar(atraccion) - atraccion
-				.getMinutosNecesarios());
+		boolean tiempoSuficiente = (this.minutosDisponibles - this
+				.tiempoParaLlegar(atraccion)) >= atraccion
+				.getMinutosNecesarios();
 
 		return presupuestoSuficiente && distanciaAlcanzable && tiempoSuficiente;
 	}
