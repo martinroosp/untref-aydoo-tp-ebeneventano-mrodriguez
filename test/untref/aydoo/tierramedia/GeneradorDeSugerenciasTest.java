@@ -31,11 +31,12 @@ public class GeneradorDeSugerenciasTest {
 	}
 
 	@Test
-	public void sugerirVisitaDeberiaRetornarLugarConDistanciaMenorAMaxima() {
+	public void sugerirVisitaDeberiaRetornarVisitaConDistanciaMaximaMenorAMaximaSugerida() {
 
 		Visita visitaSugerida = generadorDeSugerencias.sugerirVisita(usuario);
 
-		Assert.assertTrue(visitaSugerida.getDistanciaMaxima() <= this.distanciaMaximaEnMetros);
+		Assert.assertTrue(visitaSugerida.getDistanciaMaxima() <= generadorDeSugerencias
+				.getDistanciaMaximaEnMetros());
 
 	}
 
