@@ -5,7 +5,7 @@ public class GeneradorDeSugerencias {
 	private double distanciaMaximaEnMetros;
 
 	public Visita sugerirVisita(Usuario usuario) {
-		return null;
+		return new Visita();
 	}
 
 	public double getDistanciaMaximaEnMetros() {
