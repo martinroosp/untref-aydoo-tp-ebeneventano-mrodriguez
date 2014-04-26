@@ -2,9 +2,18 @@ package untref.aydoo.tierramedia;
 
 public class GeneradorDeSugerencias {
 
-	public Visita sugerirVisita(Usuario usuario) {
+	private double distanciaMaximaEnMetros;
 
+	public Visita sugerirVisita(Usuario usuario) {
 		return null;
+	}
+
+	public double getDistanciaMaximaEnMetros() {
+		return distanciaMaximaEnMetros;
+	}
+
+	public void setDistanciaMaximaEnMetros(double distanciaMaximaEnMetros) {
+		this.distanciaMaximaEnMetros = distanciaMaximaEnMetros;
 	}
 
 }
