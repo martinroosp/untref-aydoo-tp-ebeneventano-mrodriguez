@@ -16,11 +16,15 @@ public class UsuarioTest {
 	}
 
 	@Test
-	public void puedeVisitarDeberiaRetornarVerdaderoSiCumpleCondiciones() {
-		
+	public void puedeVisitarDeberiaRetornarVerdaderoSiPresupuestoEsSuficiente() {
+
 		Atraccion atraccion = new Atraccion();
-		
+		atraccion.setCosto(1000);
+
+		usuario.setPresupuesto(2000);
+
 		Assert.assertTrue(usuario.puedeVisitar(atraccion));
 
 	}
+
 }

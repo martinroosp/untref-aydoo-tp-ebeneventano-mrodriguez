@@ -10,7 +10,15 @@ public class Usuario {
 
 	public boolean puedeVisitar(Atraccion atraccion) {
 
-		return this.presupuesto >= atraccion.getCosto();
+		return this.getPresupuesto() >= atraccion.getCosto();
+	}
+
+	public double getPresupuesto() {
+		return presupuesto;
+	}
+
+	public void setPresupuesto(double presupuesto) {
+		this.presupuesto = presupuesto;
 	}
 
 }
