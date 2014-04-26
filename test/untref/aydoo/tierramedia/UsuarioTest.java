@@ -27,4 +27,16 @@ public class UsuarioTest {
 
 	}
 
+	@Test
+	public void puedeVisitarDeberiaRetornarFalsoSiPresupuestoEsInsuficiente() {
+
+		Atraccion atraccion = new Atraccion();
+		atraccion.setCosto(1000);
+
+		usuario.setPresupuesto(500);
+
+		Assert.assertFalse(usuario.puedeVisitar(atraccion));
+
+	}
+
 }
