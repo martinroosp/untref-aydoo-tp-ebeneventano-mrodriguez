@@ -31,8 +31,6 @@ public class GeneradorDeSugerencias {
 				visita.getItinerario().getAtracciones().add(atraccion);
 			}
 		}
-		
-	System.out.println(visita.getItinerario().getAtracciones().size());
 
 		return visita;
 	}
