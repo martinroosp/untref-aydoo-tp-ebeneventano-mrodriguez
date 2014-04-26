@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Itinerario {
 
+	// Tal vez sería mejor implementar una cola.
 	private List<Atraccion> atracciones;
 
 	public Itinerario() {

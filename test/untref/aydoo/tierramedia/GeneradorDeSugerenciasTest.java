@@ -20,6 +20,9 @@ public class GeneradorDeSugerenciasTest {
 		distanciaMaximaEnMetros = 1000;
 		generadorDeSugerencias
 				.setDistanciaMaximaEnMetros(distanciaMaximaEnMetros);
+		
+		usuario.setPresupuesto(5000);
+		usuario.setUbicacion(new Coordenada(0, 0));
 
 		/*
 		 * Llenado de atracciones.
@@ -27,10 +30,12 @@ public class GeneradorDeSugerenciasTest {
 		atraccionCara = new Atraccion();
 		atraccionCara.setNombre("Atracción cara");
 		atraccionCara.setCosto(1000);
+		atraccionCara.setCoordenadas(new Coordenada(0, 0));
 
 		atraccionBarata = new Atraccion();
 		atraccionBarata.setNombre("Atracción barata");
 		atraccionBarata.setCosto(500);
+		atraccionBarata.setCoordenadas(new Coordenada(0, 0));
 
 		generadorDeSugerencias.getAtracciones().add(atraccionCara);
 		generadorDeSugerencias.getAtracciones().add(atraccionBarata);

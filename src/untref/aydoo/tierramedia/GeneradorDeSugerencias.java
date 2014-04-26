@@ -2,6 +2,7 @@ package untref.aydoo.tierramedia;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,7 +19,20 @@ public class GeneradorDeSugerencias {
 	public Visita sugerirVisita(Usuario usuario) {
 
 		Visita visita = new Visita();
-		visita.getItinerario().getAtracciones().add(atracciones.get(0));
+
+		Iterator<Atraccion> iterator = this.atracciones.iterator();
+
+		while (iterator.hasNext()) {
+
+			Atraccion atraccion = iterator.next();
+
+			if (usuario.puedeVisitar(atraccion)) {
+
+				visita.getItinerario().getAtracciones().add(atraccion);
+			}
+		}
+		
+	System.out.println(visita.getItinerario().getAtracciones().size());
 
 		return visita;
 	}
