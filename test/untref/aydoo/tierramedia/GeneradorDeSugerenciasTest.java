@@ -21,7 +21,6 @@ public class GeneradorDeSugerenciasTest {
 		generadorDeSugerencias
 				.setDistanciaMaximaEnMetros(distanciaMaximaEnMetros);
 
-		
 		/*
 		 * Llenado de atracciones.
 		 */
@@ -56,13 +55,15 @@ public class GeneradorDeSugerenciasTest {
 				.getDistanciaMaximaEnMetros());
 
 	}
-	
-	@Test
-	public void sugerirVisitaDeberiaRetornarVisitaConAtraccionCara() {
 
+	@Test
+	public void sugerirVisitaDeberiaRetornarVisitaConPrimerAtraccionCara() {
+
+		generadorDeSugerencias.sortAtraccionesPorCosto();
 		Visita visitaSugerida = generadorDeSugerencias.sugerirVisita(usuario);
 
-		Assert.assertSame(atraccionBarata, visitaSugerida);
+		Assert.assertSame(atraccionCara, visitaSugerida.getItinerario()
+				.getAtracciones().get(0));
 
 	}
 

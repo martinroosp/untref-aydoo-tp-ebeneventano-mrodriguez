@@ -1,5 +1,7 @@
 package untref.aydoo.tierramedia;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +16,11 @@ public class GeneradorDeSugerencias {
 	}
 
 	public Visita sugerirVisita(Usuario usuario) {
-		return new Visita();
+
+		Visita visita = new Visita();
+		visita.getItinerario().getAtracciones().add(atracciones.get(0));
+
+		return visita;
 	}
 
 	public double getDistanciaMaximaEnMetros() {
@@ -27,6 +33,17 @@ public class GeneradorDeSugerencias {
 
 	public List<Atraccion> getAtracciones() {
 		return atracciones;
+	}
+
+	public void sortAtraccionesPorCosto() {
+
+		Collections.sort(atracciones, new Comparator<Atraccion>() {
+			public int compare(Atraccion o1, Atraccion o2) {
+				if (o1.getCosto() == o2.getCosto())
+					return 0;
+				return o1.getCosto() > o2.getCosto() ? -1 : 1;
+			}
+		});
 	}
 
 }
