@@ -8,4 +8,12 @@ public class Atraccion {
 	private int cupoDeVisitantesDiarios;
 	private TipoDeAtraccion tipo;
 
+	public double getCosto() {
+		return costo;
+	}
+
+	public void setCosto(double costo) {
+		this.costo = costo;
+	}
+
 }

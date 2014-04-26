@@ -10,7 +10,7 @@ public class Usuario {
 
 	public boolean puedeVisitar(Atraccion atraccion) {
 
-		return true;
+		return this.presupuesto >= atraccion.getCosto();
 	}
 
 }
