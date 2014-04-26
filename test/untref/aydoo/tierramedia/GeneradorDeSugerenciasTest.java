@@ -9,6 +9,8 @@ public class GeneradorDeSugerenciasTest {
 	private GeneradorDeSugerencias generadorDeSugerencias;
 	private Usuario usuario;
 	private double distanciaMaximaEnMetros;
+	private Atraccion atraccionCara;
+	private Atraccion atraccionBarata;
 
 	@Before
 	public void before() {
@@ -18,6 +20,21 @@ public class GeneradorDeSugerenciasTest {
 		distanciaMaximaEnMetros = 1000;
 		generadorDeSugerencias
 				.setDistanciaMaximaEnMetros(distanciaMaximaEnMetros);
+
+		
+		/*
+		 * Llenado de atracciones.
+		 */
+		atraccionCara = new Atraccion();
+		atraccionCara.setNombre("Atracción cara");
+		atraccionCara.setCosto(1000);
+
+		atraccionBarata = new Atraccion();
+		atraccionBarata.setNombre("Atracción barata");
+		atraccionBarata.setCosto(500);
+
+		generadorDeSugerencias.getAtracciones().add(atraccionCara);
+		generadorDeSugerencias.getAtracciones().add(atraccionBarata);
 
 	}
 
@@ -37,6 +54,15 @@ public class GeneradorDeSugerenciasTest {
 
 		Assert.assertTrue(visitaSugerida.getDistanciaMaxima() <= generadorDeSugerencias
 				.getDistanciaMaximaEnMetros());
+
+	}
+	
+	@Test
+	public void sugerirVisitaDeberiaRetornarVisitaConAtraccionCara() {
+
+		Visita visitaSugerida = generadorDeSugerencias.sugerirVisita(usuario);
+
+		Assert.assertSame(atraccionBarata, visitaSugerida);
 
 	}
 

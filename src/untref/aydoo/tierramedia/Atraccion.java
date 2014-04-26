@@ -2,6 +2,7 @@ package untref.aydoo.tierramedia;
 
 public class Atraccion {
 
+	private String nombre;
 	private Coordenada coordenadas;
 	private double costo;
 	private int minutosNecesarios;
@@ -31,6 +32,14 @@ public class Atraccion {
 
 	public void setMinutosNecesarios(int minutosNecesarios) {
 		this.minutosNecesarios = minutosNecesarios;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 }
