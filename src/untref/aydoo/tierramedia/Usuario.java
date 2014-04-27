@@ -1,5 +1,8 @@
 package untref.aydoo.tierramedia;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class Usuario {
 
 	private double presupuesto;
@@ -29,18 +32,25 @@ public class Usuario {
 		return (int) (coordenadas.distancia(atraccion.getCoordenadas()) / (velocidadDeTraslado / 60));
 	}
 
-	// public double getDistancia(Atraccion atraccion) {
-	//
-	// double catetoLatitud = (ubicacion.getLatitud() - atraccion
-	// .getCoordenadas().getLatitud());
-	// double catetoLongitud = (ubicacion.getLongitud() - atraccion
-	// .getCoordenadas().getLongitud());
-	// double hipotenusa = Math.sqrt(Math.pow(catetoLatitud, 2)
-	// + Math.pow(catetoLongitud, 2));
-	//
-	// return hipotenusa;
-	// }
+	public Visita getVisitaSugerida(List<Atraccion> atracciones) {
 
+		Visita visita = new Visita();
+
+		Iterator<Atraccion> iterator = atracciones.iterator();
+		
+		while (iterator.hasNext()) {
+
+			Atraccion atraccion = iterator.next();
+
+			if (this.puedeVisitar(atraccion)) {
+
+				visita.getItinerario().getAtracciones().add(atraccion);
+			}
+		}
+
+		return visita;
+	}
+	
 	public double getPresupuesto() {
 
 		return presupuesto;
