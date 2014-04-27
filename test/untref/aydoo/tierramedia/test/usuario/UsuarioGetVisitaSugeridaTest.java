@@ -41,7 +41,7 @@ public class UsuarioGetVisitaSugeridaTest {
 		atraccionPorDefecto.setCosto(700);
 		atraccionPorDefecto.setCupoDeVisitantesDiarios(10);
 		atraccionPorDefecto.setMinutosNecesarios(20);
-		atraccionPorDefecto.setNombre("Atracción por defecto");
+		atraccionPorDefecto.setNombre("Atraccion por defecto");
 		atraccionPorDefecto.setTipo(TipoDeAtraccion.AVENTURA);
 		
 		atraccionCara = new Atraccion();
@@ -49,7 +49,7 @@ public class UsuarioGetVisitaSugeridaTest {
 		atraccionCara.setCosto(1000);
 		atraccionCara.setCupoDeVisitantesDiarios(10);
 		atraccionCara.setMinutosNecesarios(20);
-		atraccionCara.setNombre("Atracción cara");
+		atraccionCara.setNombre("Atraccion cara");
 		atraccionCara.setTipo(TipoDeAtraccion.DEGUSTACION);
 		
 		atraccionBarata = new Atraccion();
@@ -57,7 +57,7 @@ public class UsuarioGetVisitaSugeridaTest {
 		atraccionBarata.setCosto(500);
 		atraccionBarata.setCupoDeVisitantesDiarios(10);
 		atraccionBarata.setMinutosNecesarios(20);
-		atraccionBarata.setNombre("Atracción barata");
+		atraccionBarata.setNombre("Atraccion barata");
 		atraccionBarata.setTipo(TipoDeAtraccion.PAISAJE);
 
 		atracciones.add(atraccionPorDefecto);
