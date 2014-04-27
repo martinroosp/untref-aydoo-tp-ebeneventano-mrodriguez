@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import untref.aydoo.tierramedia.Atraccion;
 import untref.aydoo.tierramedia.Coordenada;
+import untref.aydoo.tierramedia.TipoDeAtraccion;
 import untref.aydoo.tierramedia.Usuario;
 import untref.aydoo.tierramedia.Visita;
 
@@ -25,8 +26,11 @@ public class UsuarioGetVisitaSugeridaTest {
 		usuario = new Usuario();
 		atracciones = new LinkedList<Atraccion>();
 
-		usuario.setPresupuesto(5000);
 		usuario.setCoordenadas(new Coordenada(0, 0));
+		usuario.setMinutosDisponibles(60);
+		usuario.setPresupuesto(5000);
+		usuario.setTipoDeAtraccionPreferida(TipoDeAtraccion.AVENTURA);
+		usuario.setVelocidadDeTraslado(5);
 
 		/*
 		 * Llenado de atracciones.
@@ -71,6 +75,16 @@ public class UsuarioGetVisitaSugeridaTest {
 
 		Assert.assertEquals(2, visitaSugerida.getItinerario()
 				.getAtracciones().size());
+	}
+	
+	@Test
+	public void getVisitaSugeridaDeberiaRetornarVisitaConPrimerAtraccionPreferida() {
+
+		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
+//		visitaSugerida.getItinerario().sortAtraccionesPorCosto();
+
+		Assert.assertEquals(usuario.getTipoDeAtraccionPreferida(), visitaSugerida.getItinerario()
+				.getAtracciones().get(0).getTipo());
 	}
 
 }

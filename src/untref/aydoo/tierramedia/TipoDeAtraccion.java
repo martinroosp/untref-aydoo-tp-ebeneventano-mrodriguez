@@ -1,5 +1,7 @@
 package untref.aydoo.tierramedia;
 
-public abstract class TipoDeAtraccion {
-
+public enum TipoDeAtraccion {
+	
+	AVENTURA, DEGUSTACION, PAISAJE
+	
 }

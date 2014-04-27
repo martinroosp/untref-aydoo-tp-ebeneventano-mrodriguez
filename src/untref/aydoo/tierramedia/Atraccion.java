@@ -42,4 +42,20 @@ public class Atraccion {
 		this.nombre = nombre;
 	}
 
+	public int getCupoDeVisitantesDiarios() {
+		return cupoDeVisitantesDiarios;
+	}
+
+	public void setCupoDeVisitantesDiarios(int cupoDeVisitantesDiarios) {
+		this.cupoDeVisitantesDiarios = cupoDeVisitantesDiarios;
+	}
+
+	public TipoDeAtraccion getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoDeAtraccion tipo) {
+		this.tipo = tipo;
+	}
+
 }

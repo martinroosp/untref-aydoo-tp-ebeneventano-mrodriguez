@@ -22,9 +22,7 @@ public class UsuarioPuedeVisitarTest {
 		usuario.setPresupuesto(2000);
 		usuario.setCoordenadas(new Coordenada(0, 0));
 		usuario.setMinutosDisponibles(60);
-
-		// Una persona promedio camina a 5 km/h
-		usuario.setVelocidadDeTraslado(5);
+		usuario.setVelocidadDeTraslado(5); // Una persona promedio camina a 5 km/h
 
 		atraccion.setCosto(1000);
 		atraccion.setCoordenadas(new Coordenada(0, 0));
