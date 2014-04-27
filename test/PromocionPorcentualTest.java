@@ -1,6 +1,8 @@
 import java.util.LinkedList;
 import java.util.List;
 
+import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,6 +10,7 @@ import untref.aydoo.tierramedia.Atraccion;
 import untref.aydoo.tierramedia.Coordenada;
 import untref.aydoo.tierramedia.TipoDeAtraccion;
 import untref.aydoo.tierramedia.Usuario;
+import untref.aydoo.tierramedia.promocion.PromocionPorcentual;
 
 public class PromocionPorcentualTest {
 
@@ -39,6 +42,18 @@ public class PromocionPorcentualTest {
 		atraccionPorDefecto.setTipo(TipoDeAtraccion.AVENTURA);
 
 		atracciones.add(atraccionPorDefecto);
+
+	}
+
+	@Test
+	public void getCostoDeberiaRetornarCostoConDescuento() {
+
+		PromocionPorcentual promocion = new PromocionPorcentual();
+
+		promocion.setDescuento(25);
+		promocion.getAtracciones().add(atraccionPorDefecto);
+
+		Assert.assertEquals(525, Math.round(promocion.getCosto(atraccionPorDefecto)));
 
 	}
 
