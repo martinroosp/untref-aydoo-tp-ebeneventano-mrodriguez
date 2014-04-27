@@ -8,7 +8,6 @@ import java.util.List;
 
 public class GeneradorDeSugerencias {
 
-	private double distanciaMaximaEnMetros;
 	private List<Atraccion> atracciones;
 
 	public GeneradorDeSugerencias() {
@@ -35,15 +34,8 @@ public class GeneradorDeSugerencias {
 		return visita;
 	}
 
-	public double getDistanciaMaximaEnMetros() {
-		return distanciaMaximaEnMetros;
-	}
-
-	public void setDistanciaMaximaEnMetros(double distanciaMaximaEnMetros) {
-		this.distanciaMaximaEnMetros = distanciaMaximaEnMetros;
-	}
-
 	public List<Atraccion> getAtracciones() {
+
 		return atracciones;
 	}
 

@@ -8,7 +8,6 @@ public class GeneradorDeSugerenciasTest {
 
 	private GeneradorDeSugerencias generadorDeSugerencias;
 	private Usuario usuario;
-	private double distanciaMaximaEnMetros;
 	private Atraccion atraccionCara;
 	private Atraccion atraccionBarata;
 
@@ -17,9 +16,6 @@ public class GeneradorDeSugerenciasTest {
 
 		generadorDeSugerencias = new GeneradorDeSugerencias();
 		usuario = new Usuario();
-		distanciaMaximaEnMetros = 1000;
-		generadorDeSugerencias
-				.setDistanciaMaximaEnMetros(distanciaMaximaEnMetros);
 
 		usuario.setPresupuesto(5000);
 		usuario.setUbicacion(new Coordenada(0, 0));
