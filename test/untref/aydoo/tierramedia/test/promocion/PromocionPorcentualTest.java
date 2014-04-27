@@ -1,3 +1,4 @@
+package untref.aydoo.tierramedia.test.promocion;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,7 +51,7 @@ public class PromocionPorcentualTest {
 
 		PromocionPorcentual promocion = new PromocionPorcentual();
 
-		promocion.setDescuento(25);
+		promocion.setDescuentoPorcentual(25);
 		promocion.getAtracciones().add(atraccionPorDefecto);
 
 		Assert.assertEquals(525, Math.round(promocion.getCosto(atraccionPorDefecto)));

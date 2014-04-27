@@ -9,26 +9,32 @@ import untref.aydoo.tierramedia.Promocion;
 public class PromocionPorcentual extends Promocion {
 
 	private List<Atraccion> atracciones;
-	private int descuento;
+	private int descuentoPorcentual;
 
 	public PromocionPorcentual() {
 
 		atracciones = new LinkedList<Atraccion>();
 	}
 
-	public int getDescuento() {
-		return descuento;
+	public int getDescuentoPorcentual() {
+		return descuentoPorcentual;
 	}
 
-	public void setDescuento(int descuento) {
-		this.descuento = descuento;
+	public void setDescuentoPorcentual(int descuentoPorcentual) {
+		this.descuentoPorcentual = descuentoPorcentual;
 	}
 
 	public double getCosto(Atraccion atraccion) {
 
+		double descuento = 0;
 		double costoAtraccion = atraccion.getCosto();
 
-		return costoAtraccion - costoAtraccion * descuento / 100;
+		if(atracciones.contains(atraccion)){
+			
+			descuento = costoAtraccion * descuentoPorcentual / 100;
+		}
+		
+		return costoAtraccion - descuento;
 	}
 
 	public List<Atraccion> getAtracciones() {
