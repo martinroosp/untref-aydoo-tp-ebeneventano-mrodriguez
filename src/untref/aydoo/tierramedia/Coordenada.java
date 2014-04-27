@@ -22,7 +22,7 @@ public class Coordenada {
 		return radioTierraKilometros * c;
 	}
 
-	public double radianes(double coordenada) {
+	private double radianes(double coordenada) {
 
 		return (Math.PI / 180) * coordenada;
 	}

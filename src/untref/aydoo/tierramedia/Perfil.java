@@ -4,6 +4,6 @@ public class Perfil {
 	
 	private String nombre;
 	private String apellido;
-	private int telefono;
+	private String telefono;
 
 }

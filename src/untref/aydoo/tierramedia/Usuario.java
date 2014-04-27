@@ -91,4 +91,20 @@ public class Usuario {
 		this.minutosDisponibles = minutosDisponibles;
 	}
 
+	public TipoDeAtraccion getTipoDeAtraccionPreferida() {
+		return tipoDeAtraccionPreferida;
+	}
+
+	public void setTipoDeAtraccionPreferida(TipoDeAtraccion tipoDeAtraccionPreferida) {
+		this.tipoDeAtraccionPreferida = tipoDeAtraccionPreferida;
+	}
+
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
+
 }
