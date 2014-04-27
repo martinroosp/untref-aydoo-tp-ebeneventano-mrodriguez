@@ -43,4 +43,17 @@ public class Itinerario {
 		});
 	}
 
+	public void sortAtraccionesPorCercania(final Coordenada coordenada) {
+
+		Collections.sort(atracciones, new Comparator<Atraccion>() {
+			public int compare(Atraccion o1, Atraccion o2) {
+				if (o1.getCoordenadas().distancia(coordenada) == o2
+						.getCoordenadas().distancia(coordenada))
+					return 0;
+				return o1.getCoordenadas().distancia(coordenada) > o2
+						.getCoordenadas().distancia(coordenada) ? -1 : 1;
+			}
+		});
+	}
+
 }
