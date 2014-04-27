@@ -62,5 +62,15 @@ public class UsuarioGetVisitaSugeridaTest {
 		Assert.assertSame(atraccionCara, visitaSugerida.getItinerario()
 				.getAtracciones().get(0));
 	}
+	
+	@Test
+	public void getVisitaSugeridaDeberiaRetornar2VisitasPosibles() {
+
+		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
+		visitaSugerida.getItinerario().sortAtraccionesPorCosto();
+
+		Assert.assertEquals(2, visitaSugerida.getItinerario()
+				.getAtracciones().size());
+	}
 
 }
