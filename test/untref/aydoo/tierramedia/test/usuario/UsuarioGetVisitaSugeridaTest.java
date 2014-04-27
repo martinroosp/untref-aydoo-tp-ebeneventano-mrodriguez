@@ -19,6 +19,7 @@ public class UsuarioGetVisitaSugeridaTest {
 	List<Atraccion> atracciones;
 	private Atraccion atraccionCara;
 	private Atraccion atraccionBarata;
+	private Atraccion atraccionPorDefecto;
 
 	@Before
 	public void before() {
@@ -29,22 +30,37 @@ public class UsuarioGetVisitaSugeridaTest {
 		usuario.setCoordenadas(new Coordenada(0, 0));
 		usuario.setMinutosDisponibles(60);
 		usuario.setPresupuesto(5000);
-		usuario.setTipoDeAtraccionPreferida(TipoDeAtraccion.AVENTURA);
+		usuario.setTipoDeAtraccionPreferida(TipoDeAtraccion.DEGUSTACION);
 		usuario.setVelocidadDeTraslado(5);
 
 		/*
 		 * Llenado de atracciones.
 		 */
+		atraccionPorDefecto = new Atraccion();
+		atraccionPorDefecto.setCoordenadas(new Coordenada(0, 0));
+		atraccionPorDefecto.setCosto(700);
+		atraccionPorDefecto.setCupoDeVisitantesDiarios(10);
+		atraccionPorDefecto.setMinutosNecesarios(20);
+		atraccionPorDefecto.setNombre("Atracción por defecto");
+		atraccionPorDefecto.setTipo(TipoDeAtraccion.AVENTURA);
+		
 		atraccionCara = new Atraccion();
-		atraccionCara.setNombre("Atracción cara");
-		atraccionCara.setCosto(1000);
 		atraccionCara.setCoordenadas(new Coordenada(0, 0));
-
+		atraccionCara.setCosto(1000);
+		atraccionCara.setCupoDeVisitantesDiarios(10);
+		atraccionCara.setMinutosNecesarios(20);
+		atraccionCara.setNombre("Atracción cara");
+		atraccionCara.setTipo(TipoDeAtraccion.DEGUSTACION);
+		
 		atraccionBarata = new Atraccion();
-		atraccionBarata.setNombre("Atracción barata");
-		atraccionBarata.setCosto(500);
 		atraccionBarata.setCoordenadas(new Coordenada(0, 0));
+		atraccionBarata.setCosto(500);
+		atraccionBarata.setCupoDeVisitantesDiarios(10);
+		atraccionBarata.setMinutosNecesarios(20);
+		atraccionBarata.setNombre("Atracción barata");
+		atraccionBarata.setTipo(TipoDeAtraccion.PAISAJE);
 
+		atracciones.add(atraccionPorDefecto);
 		atracciones.add(atraccionCara);
 		atracciones.add(atraccionBarata);
 	}
@@ -66,25 +82,26 @@ public class UsuarioGetVisitaSugeridaTest {
 		Assert.assertSame(atraccionCara, visitaSugerida.getItinerario()
 				.getAtracciones().get(0));
 	}
-	
+
 	@Test
 	public void getVisitaSugeridaDeberiaRetornar2VisitasPosibles() {
 
 		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
 		visitaSugerida.getItinerario().sortAtraccionesPorCosto();
 
-		Assert.assertEquals(2, visitaSugerida.getItinerario()
-				.getAtracciones().size());
+		Assert.assertEquals(3, visitaSugerida.getItinerario().getAtracciones()
+				.size());
 	}
-	
+
 	@Test
 	public void getVisitaSugeridaDeberiaRetornarVisitaConPrimerAtraccionPreferida() {
 
 		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
-//		visitaSugerida.getItinerario().sortAtraccionesPorCosto();
+		visitaSugerida.getItinerario().sortAtraccionesPorPreferencia(usuario.getTipoDeAtraccionPreferida());
 
-		Assert.assertEquals(usuario.getTipoDeAtraccionPreferida(), visitaSugerida.getItinerario()
-				.getAtracciones().get(0).getTipo());
+		Assert.assertEquals(usuario.getTipoDeAtraccionPreferida(),
+				visitaSugerida.getItinerario().getAtracciones().get(0)
+						.getTipo());
 	}
 
 }

@@ -30,4 +30,17 @@ public class Itinerario {
 		});
 	}
 
+	public void sortAtraccionesPorPreferencia(final TipoDeAtraccion tipo) {
+
+		Collections.sort(atracciones, new Comparator<Atraccion>() {
+			public int compare(Atraccion o1, Atraccion o2) {
+				if (o1.getTipo() == o2.getTipo())
+					return 0;
+				else if (o1.getTipo() == tipo)
+					return -1;
+				return 1;
+			}
+		});
+	}
+
 }
