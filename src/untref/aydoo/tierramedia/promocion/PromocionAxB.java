@@ -6,6 +6,7 @@ import java.util.List;
 
 import untref.aydoo.tierramedia.Atraccion;
 import untref.aydoo.tierramedia.Promocion;
+import untref.aydoo.tierramedia.exception.PromocionNoAplicaException;
 
 public class PromocionAxB extends Promocion {
 
@@ -46,7 +47,7 @@ public class PromocionAxB extends Promocion {
 
 		} else {
 
-			throw new Exception("Paquete no tiene atracciones necesarias.");
+			throw new PromocionNoAplicaException();
 		}
 	}
 

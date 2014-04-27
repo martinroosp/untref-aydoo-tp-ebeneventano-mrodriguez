@@ -11,6 +11,7 @@ import org.junit.Test;
 import untref.aydoo.tierramedia.Atraccion;
 import untref.aydoo.tierramedia.Coordenada;
 import untref.aydoo.tierramedia.TipoDeAtraccion;
+import untref.aydoo.tierramedia.exception.PromocionNoAplicaException;
 import untref.aydoo.tierramedia.promocion.PromocionAbsoluta;
 
 public class PromocionAbsolutaTest {
@@ -44,7 +45,7 @@ public class PromocionAbsolutaTest {
 
 	}
 
-	@Test(expected = Exception.class)
+	@Test(expected = PromocionNoAplicaException.class)
 	public void getCostoDeberiaRetornarExcepcionSiPromocionNoContemplaPaquete()
 			throws Exception {
 
@@ -54,7 +55,6 @@ public class PromocionAbsolutaTest {
 		promocion.getAtracciones().add(atraccionPorDefecto);
 
 		List<Atraccion> paquete = new LinkedList<Atraccion>();
-		// paquete.add(atraccionPorDefecto);
 
 		promocion.getCosto(paquete);
 

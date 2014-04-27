@@ -5,6 +5,7 @@ import java.util.List;
 
 import untref.aydoo.tierramedia.Atraccion;
 import untref.aydoo.tierramedia.Promocion;
+import untref.aydoo.tierramedia.exception.PromocionNoAplicaException;
 
 public class PromocionAbsoluta extends Promocion {
 
@@ -36,7 +37,7 @@ public class PromocionAbsoluta extends Promocion {
 
 		} else {
 
-			throw new Exception("Paquete no contemplado.");
+			throw new PromocionNoAplicaException();
 		}
 	}
 
