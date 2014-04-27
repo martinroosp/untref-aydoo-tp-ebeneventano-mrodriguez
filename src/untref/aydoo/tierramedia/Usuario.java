@@ -6,7 +6,7 @@ public class Usuario {
 	private int minutosDisponibles;
 	private double velocidadDeTraslado; // en km/hora
 	private TipoDeAtraccion tipoDeAtraccionPreferida;
-	private Coordenada ubicacion;
+	private Coordenada coordenadas;
 	private Perfil perfil;
 
 	public boolean puedeVisitar(Atraccion atraccion) {
@@ -14,7 +14,7 @@ public class Usuario {
 		boolean presupuestoSuficiente = this.getPresupuesto() >= atraccion
 				.getCosto();
 		boolean distanciaAlcanzable = getVelocidadDeTraslado() / 60
-				* getMinutosDisponibles() >= getDistancia(atraccion);
+				* getMinutosDisponibles() >= coordenadas.distancia(atraccion.getCoordenadas());
 		boolean tiempoSuficiente = (this.minutosDisponibles - this
 				.tiempoParaLlegar(atraccion)) >= atraccion
 				.getMinutosNecesarios();
@@ -24,51 +24,58 @@ public class Usuario {
 
 	private int tiempoParaLlegar(Atraccion atraccion) {
 
-		return (int) ((int) getDistancia(atraccion) / (velocidadDeTraslado / 60));
+		return (int) (coordenadas.distancia(atraccion.getCoordenadas()) / (velocidadDeTraslado / 60));
 	}
 
-	public double getDistancia(Atraccion atraccion) {
-
-		double catetoLatitud = (ubicacion.getLatitud() - atraccion
-				.getCoordenadas().getLatitud());
-		double catetoLongitud = (ubicacion.getLongitud() - atraccion
-				.getCoordenadas().getLongitud());
-		double hipotenusa = Math.sqrt(Math.pow(catetoLatitud, 2)
-				+ Math.pow(catetoLongitud, 2));
-
-		return hipotenusa;
-
-	}
+	// public double getDistancia(Atraccion atraccion) {
+	//
+	// double catetoLatitud = (ubicacion.getLatitud() - atraccion
+	// .getCoordenadas().getLatitud());
+	// double catetoLongitud = (ubicacion.getLongitud() - atraccion
+	// .getCoordenadas().getLongitud());
+	// double hipotenusa = Math.sqrt(Math.pow(catetoLatitud, 2)
+	// + Math.pow(catetoLongitud, 2));
+	//
+	// return hipotenusa;
+	// }
 
 	public double getPresupuesto() {
+
 		return presupuesto;
 	}
 
 	public void setPresupuesto(double presupuesto) {
+
 		this.presupuesto = presupuesto;
 	}
 
-	public Coordenada getUbicacion() {
-		return ubicacion;
+	public Coordenada getCoordenadas() {
+
+		return coordenadas;
 	}
 
-	public void setUbicacion(Coordenada ubicacion) {
-		this.ubicacion = ubicacion;
+	public void setCoordenadas(Coordenada ubicacion) {
+
+		this.coordenadas = ubicacion;
 	}
 
 	public double getVelocidadDeTraslado() {
+
 		return velocidadDeTraslado;
 	}
 
 	public void setVelocidadDeTraslado(double velocidadDeTraslado) {
+
 		this.velocidadDeTraslado = velocidadDeTraslado;
 	}
 
 	public int getMinutosDisponibles() {
+
 		return minutosDisponibles;
 	}
 
 	public void setMinutosDisponibles(int minutosDisponibles) {
+
 		this.minutosDisponibles = minutosDisponibles;
 	}
 

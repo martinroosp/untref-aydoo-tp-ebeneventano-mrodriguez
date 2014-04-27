@@ -18,7 +18,7 @@ public class GeneradorDeSugerenciasTest {
 		usuario = new Usuario();
 
 		usuario.setPresupuesto(5000);
-		usuario.setUbicacion(new Coordenada(0, 0));
+		usuario.setCoordenadas(new Coordenada(0, 0));
 
 		/*
 		 * Llenado de atracciones.

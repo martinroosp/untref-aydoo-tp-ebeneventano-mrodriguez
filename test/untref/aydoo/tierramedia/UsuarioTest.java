@@ -16,7 +16,7 @@ public class UsuarioTest {
 		atraccion = new Atraccion();
 
 		usuario.setPresupuesto(2000);
-		usuario.setUbicacion(new Coordenada(0, 0));
+		usuario.setCoordenadas(new Coordenada(0, 0));
 		usuario.setMinutosDisponibles(60);
 		
 		// Una persona promedio camina a 5 km/h
@@ -53,7 +53,7 @@ public class UsuarioTest {
 	@Test
 	public void puedeVisitarDeberiaRetornarFalsoSiDistanciaEsInalcanzable() {
 
-		usuario.setUbicacion(new Coordenada(100, 0));
+		usuario.setCoordenadas(new Coordenada(100, 0));
 
 		Assert.assertFalse(usuario.puedeVisitar(atraccion));
 
