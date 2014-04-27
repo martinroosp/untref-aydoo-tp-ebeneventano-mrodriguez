@@ -76,5 +76,15 @@ public class UsuarioTest {
 		Assert.assertFalse(usuario.puedeVisitar(atraccion));
 
 	}
+	
+	@Test
+	public void puedeVisitarDeberiaRetornarFalsoSiTiempoDelUsuarioEsInsuficiente() {
+
+		atraccion.setMinutosNecesarios(10);
+		usuario.setMinutosDisponibles(0);
+
+		Assert.assertFalse(usuario.puedeVisitar(atraccion));
+
+	}
 
 }
