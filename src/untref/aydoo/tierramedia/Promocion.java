@@ -18,6 +18,7 @@ public abstract class Promocion {
 
 	public void getCosto() throws PromocionVencidaException {
 
+		// Si ha pasado el día de vencimiento
 		if (this.periodoVigencia.compareTo(new Date()) > 0) {
 			throw new PromocionVencidaException();
 		}
