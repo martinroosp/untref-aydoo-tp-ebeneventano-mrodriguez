@@ -30,6 +30,8 @@ public class PromocionAbsoluta extends Promocion {
 	}
 
 	public double getCosto(List<Atraccion> paquete) throws Exception {
+		
+		super.getCosto();
 
 		if (paquete.containsAll(atracciones)) {
 

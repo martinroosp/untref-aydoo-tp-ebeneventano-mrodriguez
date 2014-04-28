@@ -1,5 +1,6 @@
 package untref.aydoo.tierramedia.test.promocion;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import untref.aydoo.tierramedia.Atraccion;
 import untref.aydoo.tierramedia.Coordenada;
 import untref.aydoo.tierramedia.TipoDeAtraccion;
 import untref.aydoo.tierramedia.exception.PromocionNoAplicaException;
+import untref.aydoo.tierramedia.exception.PromocionVencidaException;
 import untref.aydoo.tierramedia.promocion.PromocionAbsoluta;
 
 public class PromocionAbsolutaTest {
@@ -34,6 +36,7 @@ public class PromocionAbsolutaTest {
 	public void getCostoDeberiaRetornarValorPromocion() throws Exception {
 
 		PromocionAbsoluta promocion = new PromocionAbsoluta();
+		promocion.setPeriodoVigencia(new Date());
 
 		promocion.setValor(250);
 		promocion.getAtracciones().add(atraccionPorDefecto);
@@ -50,6 +53,7 @@ public class PromocionAbsolutaTest {
 			throws Exception {
 
 		PromocionAbsoluta promocion = new PromocionAbsoluta();
+		promocion.setPeriodoVigencia(new Date());
 
 		promocion.setValor(250);
 		promocion.getAtracciones().add(atraccionPorDefecto);
@@ -57,6 +61,17 @@ public class PromocionAbsolutaTest {
 		List<Atraccion> paquete = new LinkedList<Atraccion>();
 
 		promocion.getCosto(paquete);
+
+	}
+
+	@Test(expected = PromocionVencidaException.class)
+	public void getCostoDeberiaRetornarExcepcionSiPromocionVencida()
+			throws Exception {
+
+		PromocionAbsoluta promocion = new PromocionAbsoluta();
+		promocion.setPeriodoVigencia(new Date(2014, 04, 24));
+
+		promocion.getCosto(null);
 
 	}
 
