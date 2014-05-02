@@ -58,4 +58,18 @@ public class Atraccion {
 		this.tipo = tipo;
 	}
 
+	public int calcularDistanciaAUsuarioEnMts(double latUsuario, double longUsuario){
+		int radius = 6371000; //Radio de la tierra
+		double latitudAtraccion = this.getCoordenadas().getLatitud() / 1E6;
+		double latitudUsuario = latUsuario / 1E6;
+		double longitudAtraccion = this.getCoordenadas().getLongitud() / 1E6;
+		double longitudUsuario = longUsuario / 1E6;
+		double dLat = Math.toRadians(latitudUsuario - latitudAtraccion);
+		double dLon = Math.toRadians(longitudUsuario - longitudAtraccion);
+		double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + 
+			Math.cos(Math.toRadians(latitudAtraccion)) * Math.cos(Math.toRadians(latitudUsuario)) * 
+			Math.sin(dLon /2) * Math.sin(dLon/2);
+		double c = 2 * Math.asin(Math.sqrt(a));
+		return (int) (radius * c);  
+	}
 }
