@@ -39,4 +39,17 @@ public class PromocionExtranjero extends Promocion{
 	public List<Atraccion> getAtracciones(){
 		return this.listaAtracciones;
 	}
+	
+	public double getCosto(Atraccion atraccion, Usuario usuario) {
+
+		double descuento = 0;
+		double costoAtraccion = atraccion.getCosto();
+
+		if(listaAtracciones.contains(atraccion) && this.obtenerDistanciaMasCercanaAUsuario(usuario) > 200){
+			
+			descuento = costoAtraccion * 50 / 100;
+		}
+		
+		return costoAtraccion - descuento;
+	}
 }
