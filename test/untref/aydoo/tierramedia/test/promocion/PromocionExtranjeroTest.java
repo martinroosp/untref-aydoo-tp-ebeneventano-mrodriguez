@@ -32,6 +32,7 @@ public class PromocionExtranjeroTest {
 		atraccionB.setNombre("Glaciar Perito Moreno");
 		
 		atraccionC.setCosto(300);
+		//Coordenadas aeroparque jorge newbery
 		atraccionC.setCoordenadas(new Coordenada(-34.55803, -58.417009));
 		atraccionC.setNombre("Aeroparque Jorge Newbery");
 	}
@@ -77,5 +78,43 @@ public class PromocionExtranjeroTest {
 		
 		Assert.assertEquals(distanciaUsuarioAJorgeNewbery, 
 				promocionExt.obtenerDistanciaMasCercanaAUsuario(usuario));
+	}
+	
+	@Test
+	public void costoAtraccionDebeSerElMismoSiElUsuarioEstaAMenosDe200Km(){
+		Usuario usuario = new Usuario();
+		//Latitud y longitud de la ubicacion del obelisco
+		double latitudUsuario = -34.603711;
+		double longitudUsuario = -58.381585;
+		
+		Coordenada coordenadaUsuario = new Coordenada(latitudUsuario, longitudUsuario);
+		usuario.setCoordenadas(coordenadaUsuario);
+		
+		PromocionExtranjero promocionExt = new PromocionExtranjero();
+		promocionExt.setAtraccionAPromocion(atraccionA);
+		promocionExt.setAtraccionAPromocion(atraccionB);
+		promocionExt.setAtraccionAPromocion(atraccionC);
+		
+		double precio = atraccionC.getCosto();
+		Assert.assertEquals(precio, promocionExt.getCosto(atraccionC, usuario),0);
+	}
+	
+	@Test
+	public void costoAtraccionDebeSerEl50PorcientoMenosSiElUsuarioEstaAMenosDe200Km(){
+		Usuario usuario = new Usuario();
+		//Latitud y longitud de la ubicacion del obelisco
+		double latitudUsuario = -23.1934449;
+		double longitudUsuario = -65.6961709;
+		
+		Coordenada coordenadaUsuario = new Coordenada(latitudUsuario, longitudUsuario);
+		usuario.setCoordenadas(coordenadaUsuario);
+		
+		PromocionExtranjero promocionExt = new PromocionExtranjero();
+		promocionExt.setAtraccionAPromocion(atraccionA);
+		promocionExt.setAtraccionAPromocion(atraccionB);
+		promocionExt.setAtraccionAPromocion(atraccionC);
+		
+		double precio = atraccionC.getCosto() / 2;
+		Assert.assertEquals(precio, promocionExt.getCosto(atraccionC, usuario),0);
 	}
 }
