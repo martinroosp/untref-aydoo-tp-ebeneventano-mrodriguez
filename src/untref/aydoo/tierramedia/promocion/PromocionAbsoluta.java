@@ -32,15 +32,17 @@ public class PromocionAbsoluta extends Promocion {
 	public double getCosto(List<Atraccion> paquete) throws Exception {
 		
 		super.getCosto();
-
+		
+		double costo = 0;
+		
 		if (paquete.containsAll(atracciones)) {
-
-			return valor;
-
+			costo = valor;
 		} else {
-
-			throw new PromocionNoAplicaException();
+			for(Atraccion unaAtraccion : paquete){
+				costo+=unaAtraccion.getCosto();
+			}
 		}
+		return costo;
 	}
 
 }
