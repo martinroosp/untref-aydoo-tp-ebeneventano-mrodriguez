@@ -77,7 +77,7 @@ public class UsuarioGetVisitaSugeridaTest {
 	public void getVisitaSugeridaDeberiaRetornarVisitaConPrimerAtraccionCara() {
 
 		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
-		visitaSugerida.getItinerario().sortAtraccionesPorCosto();
+		visitaSugerida.getItinerario().ordenarAtraccionesPorCosto();
 
 		Assert.assertSame(atraccionCara, visitaSugerida.getItinerario()
 				.getAtracciones().get(0));
@@ -87,7 +87,7 @@ public class UsuarioGetVisitaSugeridaTest {
 	public void getVisitaSugeridaDeberiaRetornar2VisitasPosibles() {
 
 		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
-		visitaSugerida.getItinerario().sortAtraccionesPorCosto();
+		visitaSugerida.getItinerario().ordenarAtraccionesPorCosto();
 
 		Assert.assertEquals(3, visitaSugerida.getItinerario().getAtracciones()
 				.size());
@@ -97,7 +97,7 @@ public class UsuarioGetVisitaSugeridaTest {
 	public void getVisitaSugeridaDeberiaRetornarVisitaConPrimerAtraccionPreferida() {
 
 		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
-		visitaSugerida.getItinerario().sortAtraccionesPorPreferencia(usuario.getTipoDeAtraccionPreferida());
+		visitaSugerida.getItinerario().ordenarAtraccionesPorPreferencia(usuario.getTipoDeAtraccionPreferida());
 
 		Assert.assertEquals(usuario.getTipoDeAtraccionPreferida(),
 				visitaSugerida.getItinerario().getAtracciones().get(0)
