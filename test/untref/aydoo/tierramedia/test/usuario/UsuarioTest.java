@@ -3,9 +3,7 @@ package untref.aydoo.tierramedia.test.usuario;
 import java.util.LinkedList;
 import java.util.List;
 
-import junit.framework.Assert;
-
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +14,9 @@ import untref.aydoo.tierramedia.Usuario;
 import untref.aydoo.tierramedia.Visita;
 
 public class UsuarioTest {
-	
+
+	final double DELTA = 0.001;
+
 	private Usuario usuario;
 	List<Atraccion> atracciones;
 	private Atraccion atraccionCara;
@@ -45,7 +45,7 @@ public class UsuarioTest {
 		atraccionPorDefecto.setMinutosNecesarios(20);
 		atraccionPorDefecto.setNombre("Atraccion por defecto");
 		atraccionPorDefecto.setTipo(TipoDeAtraccion.AVENTURA);
-		
+
 		atraccionCara = new Atraccion();
 		atraccionCara.setCoordenadas(new Coordenada(0, 0));
 		atraccionCara.setCosto(1000);
@@ -53,7 +53,7 @@ public class UsuarioTest {
 		atraccionCara.setMinutosNecesarios(20);
 		atraccionCara.setNombre("Atraccion cara");
 		atraccionCara.setTipo(TipoDeAtraccion.DEGUSTACION);
-		
+
 		atraccionBarata = new Atraccion();
 		atraccionBarata.setCoordenadas(new Coordenada(0, 0));
 		atraccionBarata.setCosto(500);
@@ -66,22 +66,24 @@ public class UsuarioTest {
 		atracciones.add(atraccionCara);
 		atracciones.add(atraccionBarata);
 	}
+
 	@Test
 	public void getPresupuesto() {
 
 		double presupuesto = 1000;
 		usuario.setPresupuesto(presupuesto);
-		Assert.assertEquals(presupuesto, usuario.getPresupuesto());
+		Assert.assertEquals(presupuesto, usuario.getPresupuesto(), DELTA);
 	}
-	
+
 	@Test
 	public void getVelocidadDeTraslado() {
 
 		double velocidadDeTraslado = 1000;
 		usuario.setVelocidadDeTraslado(velocidadDeTraslado);
-		Assert.assertEquals(velocidadDeTraslado, usuario.getVelocidadDeTraslado());
+		Assert.assertEquals(velocidadDeTraslado,
+				usuario.getVelocidadDeTraslado(), DELTA);
 	}
-	
+
 	@Test
 	public void getMinutosDisponibles() {
 
@@ -89,7 +91,7 @@ public class UsuarioTest {
 		usuario.setMinutosDisponibles(minutosDisponibles);
 		Assert.assertEquals(minutosDisponibles, usuario.getMinutosDisponibles());
 	}
-	
+
 	@Test
 	public void getCoordenadas() {
 
@@ -103,7 +105,8 @@ public class UsuarioTest {
 
 		TipoDeAtraccion tipoDeAtraccionPreferida = TipoDeAtraccion.AVENTURA;
 		usuario.setTipoDeAtraccionPreferida(tipoDeAtraccionPreferida);
-		Assert.assertEquals(tipoDeAtraccionPreferida, usuario.getTipoDeAtraccionPreferida());
+		Assert.assertEquals(tipoDeAtraccionPreferida,
+				usuario.getTipoDeAtraccionPreferida());
 	}
 
 	@Test
@@ -138,7 +141,8 @@ public class UsuarioTest {
 	public void getVisitaSugeridaDeberiaRetornarVisitaConPrimerAtraccionPreferida() {
 
 		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
-		visitaSugerida.getItinerario().ordenarAtraccionesPorPreferencia(usuario.getTipoDeAtraccionPreferida());
+		visitaSugerida.getItinerario().ordenarAtraccionesPorPreferencia(
+				usuario.getTipoDeAtraccionPreferida());
 
 		Assert.assertEquals(usuario.getTipoDeAtraccionPreferida(),
 				visitaSugerida.getItinerario().getAtracciones().get(0)
@@ -197,5 +201,53 @@ public class UsuarioTest {
 		usuario.setMinutosDisponibles(0);
 
 		Assert.assertFalse(usuario.puedeVisitar(atraccionPorDefecto));
+	}
+
+	@Test
+	public void getVisitaSugeridaNoDeberiaExcederElTiempoDisponibleDelUsuario() {
+
+		Atraccion atraccion;
+		usuario = new Usuario();
+		atracciones = new LinkedList<Atraccion>();
+
+		usuario.setCoordenadas(new Coordenada(0, 0));
+		usuario.setMinutosDisponibles(10);
+		usuario.setPresupuesto(5000);
+		usuario.setTipoDeAtraccionPreferida(TipoDeAtraccion.DEGUSTACION);
+		usuario.setVelocidadDeTraslado(5);
+
+		atraccion = new Atraccion();
+		atraccion.setCoordenadas(new Coordenada(0, 0));
+		atraccion.setCosto(1);
+		atraccion.setCupoDeVisitantesDiarios(10);
+		atraccion.setMinutosNecesarios(5);
+		atraccion.setNombre("A1");
+		atraccion.setTipo(TipoDeAtraccion.AVENTURA);
+		atracciones.add(atraccion);
+
+		atraccion = new Atraccion();
+		atraccion.setCoordenadas(new Coordenada(0, 0));
+		atraccion.setCosto(1);
+		atraccion.setCupoDeVisitantesDiarios(10);
+		atraccion.setMinutosNecesarios(5);
+		atraccion.setNombre("A2");
+		atraccion.setTipo(TipoDeAtraccion.AVENTURA);
+		atracciones.add(atraccion);
+
+		atraccion = new Atraccion();
+		atraccion.setCoordenadas(new Coordenada(0, 0));
+		atraccion.setCosto(1);
+		atraccion.setCupoDeVisitantesDiarios(10);
+		atraccion.setMinutosNecesarios(5);
+		atraccion.setNombre("A3");
+		atraccion.setTipo(TipoDeAtraccion.AVENTURA);
+		atracciones.add(atraccion);
+
+		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
+
+		Assert.assertTrue(visitaSugerida.getItinerario().getAtracciones()
+				.size() < 3);
+		Assert.assertEquals(0, visitaSugerida.getItinerario().getAtracciones()
+				.size());
 	}
 }

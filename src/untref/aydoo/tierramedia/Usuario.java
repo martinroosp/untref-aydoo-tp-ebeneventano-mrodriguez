@@ -21,7 +21,29 @@ public class Usuario {
 				.getMinutosNecesarios();
 
 		return presupuestoSuficiente && tiempoSuficiente;
-		
+
+	}
+
+	public boolean puedeVisitar(List<Atraccion> atracciones) {
+
+		double costoTotal = 0;
+		int minutosNecesarios = 0;
+
+		Iterator<Atraccion> iterator = atracciones.iterator();
+
+		while (iterator.hasNext()) {
+
+			Atraccion atraccion = iterator.next();
+
+			costoTotal += atraccion.getCosto();
+			minutosNecesarios += atraccion.getMinutosNecesarios();
+		}
+
+		boolean presupuestoSuficiente = this.getPresupuesto() >= costoTotal;
+		boolean tiempoSuficiente = (this.minutosDisponibles) >= minutosNecesarios;
+
+		return presupuestoSuficiente && tiempoSuficiente;
+
 	}
 
 	private int tiempoParaLlegar(Atraccion atraccion) {
@@ -33,21 +55,14 @@ public class Usuario {
 
 		Visita visita = new Visita();
 
-		Iterator<Atraccion> iterator = atracciones.iterator();
-		
-		while (iterator.hasNext()) {
+		if (this.puedeVisitar(atracciones)) {
 
-			Atraccion atraccion = iterator.next();
-
-			if (this.puedeVisitar(atraccion)) {
-
-				visita.getItinerario().getAtracciones().add(atraccion);
-			}
+			visita.getItinerario().getAtracciones().addAll(atracciones);
 		}
 
 		return visita;
 	}
-	
+
 	public double getPresupuesto() {
 
 		return presupuesto;
@@ -92,7 +107,8 @@ public class Usuario {
 		return tipoDeAtraccionPreferida;
 	}
 
-	public void setTipoDeAtraccionPreferida(TipoDeAtraccion tipoDeAtraccionPreferida) {
+	public void setTipoDeAtraccionPreferida(
+			TipoDeAtraccion tipoDeAtraccionPreferida) {
 		this.tipoDeAtraccionPreferida = tipoDeAtraccionPreferida;
 	}
 
