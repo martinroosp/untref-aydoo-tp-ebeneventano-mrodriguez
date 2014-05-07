@@ -19,11 +19,8 @@ public class Usuario {
 		boolean tiempoSuficiente = (this.minutosDisponibles - this
 				.tiempoParaLlegar(atraccion)) >= atraccion
 				.getMinutosNecesarios();
-//		boolean distanciaAlcanzable = getVelocidadDeTraslado() / 60
-//				* getMinutosDisponibles() >= coordenadas.distancia(atraccion.getCoordenadas());
 
 		return presupuestoSuficiente && tiempoSuficiente;
-		// && distanciaAlcanzable es redundante.
 		
 	}
 
