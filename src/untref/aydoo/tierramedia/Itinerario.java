@@ -19,7 +19,7 @@ public class Itinerario {
 		return atracciones;
 	}
 
-	public void sortAtraccionesPorCosto() {
+	public void ordenarAtraccionesPorCosto() {
 
 		Collections.sort(atracciones, new Comparator<Atraccion>() {
 			public int compare(Atraccion o1, Atraccion o2) {
@@ -30,7 +30,7 @@ public class Itinerario {
 		});
 	}
 
-	public void sortAtraccionesPorPreferencia(final TipoDeAtraccion tipo) {
+	public void ordenarAtraccionesPorPreferencia(final TipoDeAtraccion tipo) {
 
 		Collections.sort(atracciones, new Comparator<Atraccion>() {
 			public int compare(Atraccion o1, Atraccion o2) {
@@ -43,7 +43,7 @@ public class Itinerario {
 		});
 	}
 
-	public void sortAtraccionesPorCercania(final Coordenada coordenada) {
+	public void ordenarAtraccionesPorCercania(final Coordenada coordenada) {
 
 		Collections.sort(atracciones, new Comparator<Atraccion>() {
 			public int compare(Atraccion o1, Atraccion o2) {
