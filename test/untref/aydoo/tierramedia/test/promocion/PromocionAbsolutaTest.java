@@ -28,7 +28,7 @@ public class PromocionAbsolutaTest {
 		atraccionPorDefecto.setCosto(700);
 		atraccionPorDefecto.setCupoDeVisitantesDiarios(10);
 		atraccionPorDefecto.setMinutosNecesarios(20);
-		atraccionPorDefecto.setNombre("Atracción por defecto");
+		atraccionPorDefecto.setNombre("Atraccion por defecto");
 		atraccionPorDefecto.setTipo(TipoDeAtraccion.AVENTURA);
 	}
 
@@ -48,8 +48,8 @@ public class PromocionAbsolutaTest {
 
 	}
 
-	@Test(expected = PromocionNoAplicaException.class)
-	public void getCostoDeberiaRetornarExcepcionSiPromocionNoContemplaPaquete()
+	@Test
+	public void getCostoDeberiaRetornarLaSumaTotalDeTodasLasAtraccionesYaQueNoAplicaPromocion()
 			throws Exception {
 
 		PromocionAbsoluta promocion = new PromocionAbsoluta();
@@ -59,9 +59,16 @@ public class PromocionAbsolutaTest {
 		promocion.getAtracciones().add(atraccionPorDefecto);
 
 		List<Atraccion> paquete = new LinkedList<Atraccion>();
+		Atraccion atraccionNueva = new Atraccion();
+		atraccionNueva.setCoordenadas(new Coordenada(0, 0));
+		atraccionNueva.setCosto(500);
+		atraccionNueva.setCupoDeVisitantesDiarios(10);
+		atraccionNueva.setMinutosNecesarios(20);
+		atraccionNueva.setNombre("Atraccion por defecto");
+		atraccionNueva.setTipo(TipoDeAtraccion.AVENTURA);
+		paquete.add(atraccionNueva);
 
-		promocion.getCosto(paquete);
-
+		Assert.assertEquals(500.0, promocion.getCosto(paquete));
 	}
 
 	@Test(expected = PromocionVencidaException.class)
