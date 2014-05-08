@@ -10,7 +10,7 @@ public abstract class Promocion {
 
 	private Date periodoVigencia;
 	protected List<Atraccion> atracciones;
-	
+
 	public Promocion() {
 
 		atracciones = new LinkedList<Atraccion>();

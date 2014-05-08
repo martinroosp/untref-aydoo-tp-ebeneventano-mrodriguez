@@ -56,19 +56,19 @@ public class Usuario {
 
 		Visita visita = new Visita();
 		
-//		Iterator<Promocion> iteradorPromociones = promociones.iterator();
-//
-//		while (iteradorPromociones.hasNext()) {
-//
-//			Promocion promocion = iteradorPromociones.next();
-//
-//			visita.getItinerario().getAtracciones().add(promocion.get);
-//
-//			if (!puedeVisitar(visita.getItinerario())) {
-//
-//				visita.getItinerario().getAtracciones().remove(atraccion);
-//			}
-//		}
+		// Iterator<Promocion> iteradorPromociones = promociones.iterator();
+		//
+		// while (iteradorPromociones.hasNext()) {
+		//
+		// Promocion promocion = iteradorPromociones.next();
+		//
+		// visita.getItinerario().getAtracciones().add(promocion.get);
+		//
+		// if (!puedeVisitar(visita.getItinerario())) {
+		//
+		// visita.getItinerario().getAtracciones().remove(atraccion);
+		// }
+		// }
 
 		Iterator<Atraccion> iteradorAtracciones = atracciones.iterator();
 
