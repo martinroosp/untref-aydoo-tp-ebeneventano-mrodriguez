@@ -24,10 +24,6 @@ public abstract class Promocion {
 		this.periodoVigencia = periodoVigencia;
 	}
 
-	public void getCosto() {
-
-	}
-
 	public List<Atraccion> getAtracciones() {
 		return atracciones;
 	}
