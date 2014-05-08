@@ -11,11 +11,11 @@ public class PromocionExtranjero extends Promocion {
 
 	// Devuelve la distacia mas cercana del usuario a una atraccion
 	public int obtenerDistanciaMasCercanaAUsuario(Usuario usuario) {
-		int distancia = ((Atraccion) atracciones.get(0))
+		int distancia = ((Atraccion) getAtracciones().get(0))
 				.calcularDistanciaAUsuario(usuario.getCoordenadas()
 						.getLatitud(), usuario.getCoordenadas().getLongitud(),
 						'K');
-		Iterator<Atraccion> it = atracciones.iterator();
+		Iterator<Atraccion> it = getAtracciones().iterator();
 		while (it.hasNext()) {
 			Atraccion unaAtraccion = (Atraccion) it.next();
 			int distanciaAUsuario = unaAtraccion.calcularDistanciaAUsuario(
@@ -29,7 +29,7 @@ public class PromocionExtranjero extends Promocion {
 	}
 
 	public void setAtraccionAPromocion(Atraccion atraccion) {
-		this.atracciones.add(atraccion);
+		this.getAtracciones().add(atraccion);
 	}
 
 	public List<Atraccion> getAtracciones() {
@@ -41,7 +41,7 @@ public class PromocionExtranjero extends Promocion {
 		double descuento = 0;
 		double costoAtraccion = atraccion.getCosto();
 
-		if (atracciones.contains(atraccion)
+		if (getAtracciones().contains(atraccion)
 				&& this.obtenerDistanciaMasCercanaAUsuario(usuario) > 200) {
 
 			descuento = costoAtraccion * 50 / 100;

@@ -16,7 +16,7 @@ import untref.aydoo.tierramedia.Visita;
 
 public class UsuarioTest {
 
-	final double DELTA = 0.001;
+	private final static double DELTA = 0.001;
 
 	private Usuario usuario;
 	private List<Atraccion> atracciones;

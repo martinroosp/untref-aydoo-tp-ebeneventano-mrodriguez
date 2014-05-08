@@ -4,19 +4,18 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import untref.aydoo.tierramedia.Atraccion;
 import untref.aydoo.tierramedia.Coordenada;
 import untref.aydoo.tierramedia.TipoDeAtraccion;
-import untref.aydoo.tierramedia.exception.PromocionNoAplicaException;
-import untref.aydoo.tierramedia.exception.PromocionVencidaException;
 import untref.aydoo.tierramedia.promocion.PromocionAbsoluta;
 
 public class PromocionAbsolutaTest {
+
+	private final static double DELTA = 0.001;
 
 	private Atraccion atraccionPorDefecto;
 
@@ -49,8 +48,7 @@ public class PromocionAbsolutaTest {
 	}
 
 	@Test
-	public void getCostoDeberiaRetornarLaSumaTotalDeTodasLasAtraccionesYaQueNoAplicaPromocion()
-			throws Exception {
+	public void getCostoDeberiaRetornarLaSumaTotalDeTodasLasAtraccionesYaQueNoAplicaPromocion() {
 
 		PromocionAbsoluta promocion = new PromocionAbsoluta();
 		promocion.setPeriodoVigencia(new Date());
@@ -68,17 +66,16 @@ public class PromocionAbsolutaTest {
 		atraccionNueva.setTipo(TipoDeAtraccion.AVENTURA);
 		paquete.add(atraccionNueva);
 
-		Assert.assertEquals(500.0, promocion.getCosto(paquete));
+		Assert.assertEquals(500.0, promocion.getCosto(paquete), DELTA);
 	}
 
-	@Test(expected = PromocionVencidaException.class)
-	public void getCostoDeberiaRetornarExcepcionSiPromocionVencida()
-			throws Exception {
+	@Test
+	public void vencidaDeberiaRetornarTrueSiPromocionEstaVencida() {
 
 		PromocionAbsoluta promocion = new PromocionAbsoluta();
 		promocion.setPeriodoVigencia(new Date(2014, 04, 24));
 
-		promocion.getCosto(null);
+		Assert.assertTrue(promocion.vencida());
 
 	}
 

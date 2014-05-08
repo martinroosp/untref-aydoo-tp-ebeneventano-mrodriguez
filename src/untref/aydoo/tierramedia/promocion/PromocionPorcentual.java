@@ -22,7 +22,7 @@ public class PromocionPorcentual extends Promocion {
 		double descuento = 0;
 		double costoAtraccion = atraccion.getCosto();
 
-		if (atracciones.contains(atraccion)) {
+		if (getAtracciones().contains(atraccion)) {
 
 			descuento = costoAtraccion * descuentoPorcentual / 100;
 		}

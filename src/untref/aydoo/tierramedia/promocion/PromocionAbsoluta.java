@@ -21,13 +21,13 @@ public class PromocionAbsoluta extends Promocion {
 		return atracciones;
 	}
 
-	public double getCosto(List<Atraccion> paquete) throws Exception {
+	public double getCosto(List<Atraccion> paquete) {
 
 		super.getCosto();
 
 		double costo = 0;
 
-		if (paquete.containsAll(atracciones)) {
+		if (paquete.containsAll(getAtracciones())) {
 			costo = valor;
 		} else {
 			for (Atraccion unaAtraccion : paquete) {

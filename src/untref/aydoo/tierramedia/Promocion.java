@@ -4,8 +4,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import untref.aydoo.tierramedia.exception.PromocionVencidaException;
-
 public abstract class Promocion {
 
 	private Date periodoVigencia;
@@ -17,19 +15,27 @@ public abstract class Promocion {
 	}
 
 	public Date getPeriodoVigencia() {
+
 		return periodoVigencia;
 	}
 
 	public void setPeriodoVigencia(Date periodoVigencia) {
+
 		this.periodoVigencia = periodoVigencia;
 	}
 
-	public void getCosto() throws PromocionVencidaException {
-		// Si ha pasado el dia de vencimiento
-		if (this.periodoVigencia.compareTo(new Date()) > 0) {
-			throw new PromocionVencidaException();
-		}
+	public void getCosto() {
 
+	}
+
+	public List<Atraccion> getAtracciones() {
+		return atracciones;
+	}
+
+	public boolean vencida() {
+
+		// Si ha pasado el dia de vencimiento
+		return (this.periodoVigencia.compareTo(new Date()) > 0);
 	}
 
 }

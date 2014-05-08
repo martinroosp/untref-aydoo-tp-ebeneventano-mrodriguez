@@ -19,7 +19,7 @@ public class PromocionAxB extends Promocion {
 	}
 
 	public List<Atraccion> getNecesarias() {
-		return atracciones;
+		return getAtracciones();
 	}
 
 	public List<Atraccion> getBonificadas() {
@@ -30,7 +30,7 @@ public class PromocionAxB extends Promocion {
 
 		double costo = 0;
 
-		if (paquete.containsAll(atracciones)) {
+		if (paquete.containsAll(getAtracciones())) {
 
 			Iterator<Atraccion> iterator = paquete.iterator();
 

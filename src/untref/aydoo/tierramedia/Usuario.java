@@ -52,23 +52,32 @@ public class Usuario {
 		return (int) (coordenadas.distancia(atraccion.getCoordenadas()) / (velocidadDeTraslado / 60));
 	}
 
-	public Visita getVisitaSugerida(List<Atraccion> atracciones, List<Promocion> promociones) {
+	public Visita getVisitaSugerida(List<Atraccion> atracciones,
+			List<Promocion> promociones) {
 
 		Visita visita = new Visita();
-		
-		// Iterator<Promocion> iteradorPromociones = promociones.iterator();
-		//
-		// while (iteradorPromociones.hasNext()) {
-		//
-		// Promocion promocion = iteradorPromociones.next();
-		//
-		// visita.getItinerario().getAtracciones().add(promocion.get);
-		//
-		// if (!puedeVisitar(visita.getItinerario())) {
-		//
-		// visita.getItinerario().getAtracciones().remove(atraccion);
-		// }
-		// }
+
+		Iterator<Promocion> iteradorPromociones = promociones.iterator();
+
+		while (iteradorPromociones.hasNext()) {
+
+			Promocion promocion = iteradorPromociones.next();
+
+			if (!promocion.vencida()) {
+
+				visita.getItinerario().getAtracciones()
+						.addAll(promocion.getAtracciones());
+
+				if (!puedeVisitar(visita.getItinerario())) {
+
+					visita.getItinerario().getAtracciones()
+							.removeAll(promocion.getAtracciones());
+				} else {
+
+					visita.getPromociones().add(promocion);
+				}
+			}
+		}
 
 		Iterator<Atraccion> iteradorAtracciones = atracciones.iterator();
 
