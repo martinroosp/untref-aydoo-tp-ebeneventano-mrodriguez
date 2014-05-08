@@ -52,11 +52,22 @@ public class Usuario {
 		return (int) (coordenadas.distancia(atraccion.getCoordenadas()) / (velocidadDeTraslado / 60));
 	}
 
+	/**
+	 * @pre Recibe la lista de atracciones y promociones existentes.
+	 * @post Devuelve una visita con un itinerario posible y promociones.
+	 * @param atracciones
+	 * @param promociones
+	 * @return
+	 */
 	public Visita getVisitaSugerida(List<Atraccion> atracciones,
 			List<Promocion> promociones) {
 
 		Visita visita = new Visita();
 
+		/*
+		 * Itera las promociones e intenta agregar las posibles.
+		 * De momento la prioridad está dada por el órden de lista de entrada.
+		 */
 		Iterator<Promocion> iteradorPromociones = promociones.iterator();
 
 		while (iteradorPromociones.hasNext()) {
@@ -79,6 +90,10 @@ public class Usuario {
 			}
 		}
 
+		/*
+		 * Itera las atracciones e intenta agregar las posibles.
+		 * De momento la prioridad está dada por el órden de lista de entrada.
+		 */
 		Iterator<Atraccion> iteradorAtracciones = atracciones.iterator();
 
 		while (iteradorAtracciones.hasNext()) {

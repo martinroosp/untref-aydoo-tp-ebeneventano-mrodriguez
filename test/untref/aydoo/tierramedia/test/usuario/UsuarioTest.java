@@ -1,5 +1,6 @@
 package untref.aydoo.tierramedia.test.usuario;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import untref.aydoo.tierramedia.Promocion;
 import untref.aydoo.tierramedia.TipoDeAtraccion;
 import untref.aydoo.tierramedia.Usuario;
 import untref.aydoo.tierramedia.Visita;
+import untref.aydoo.tierramedia.promocion.PromocionAxB;
 
 public class UsuarioTest {
 
@@ -309,4 +311,40 @@ public class UsuarioTest {
 				.size());
 	}
 
+	@Test
+	public void getVisitaSugeridaDeberiaDevolverVisitaConPromocion() {
+
+		usuario = new Usuario();
+		usuario.setCoordenadas(new Coordenada(0, 0));
+
+		Atraccion atraccionA = new Atraccion();
+		Atraccion atraccionB = new Atraccion();
+		Atraccion atraccionC = new Atraccion();
+
+		atraccionA.setCoordenadas(new Coordenada(0, 0));
+		atraccionB.setCoordenadas(new Coordenada(0, 0));
+		atraccionC.setCoordenadas(new Coordenada(0, 0));
+
+		PromocionAxB promocion = new PromocionAxB();
+
+		promocion.setPeriodoVigencia(new Date());
+
+		promocion.getNecesarias().add(atraccionA);
+		promocion.getNecesarias().add(atraccionB);
+		promocion.getBonificadas().add(atraccionC);
+
+		List<Atraccion> atracciones = new LinkedList<Atraccion>();
+		atracciones.add(atraccionA);
+		atracciones.add(atraccionB);
+		atracciones.add(atraccionC);
+
+		List<Promocion> promociones = new LinkedList<Promocion>();
+		promociones.add(promocion);
+
+		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones,
+				promociones);
+
+		Assert.assertFalse(promocion.vencida());
+		Assert.assertTrue(visitaSugerida.getPromociones().contains(promocion));
+	}
 }
