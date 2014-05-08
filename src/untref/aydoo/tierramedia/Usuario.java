@@ -58,7 +58,7 @@ public class Usuario {
 
 		Iterator<Atraccion> iterator = atracciones.iterator();
 
-		while (puedeVisitar(visita.getItinerario()) && iterator.hasNext()) {
+		while (iterator.hasNext()) {
 
 			Atraccion atraccion = iterator.next();
 
