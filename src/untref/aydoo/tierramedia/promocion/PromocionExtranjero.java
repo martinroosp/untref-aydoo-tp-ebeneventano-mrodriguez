@@ -1,6 +1,5 @@
 package untref.aydoo.tierramedia.promocion;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -8,48 +7,46 @@ import untref.aydoo.tierramedia.Atraccion;
 import untref.aydoo.tierramedia.Promocion;
 import untref.aydoo.tierramedia.Usuario;
 
-public class PromocionExtranjero extends Promocion{
+public class PromocionExtranjero extends Promocion {
 
-	private List<Atraccion> listaAtracciones;
-	
-	public PromocionExtranjero (){
-		listaAtracciones = new ArrayList<Atraccion>();
-	}
-	
-	//Devuelve la distacia mas cercana del usuario a una atraccion
-	public int obtenerDistanciaMasCercanaAUsuario(Usuario usuario){
-		int distancia = ((Atraccion)listaAtracciones.get(0)).calcularDistanciaAUsuario(usuario.getCoordenadas().getLatitud(), 
-				usuario.getCoordenadas().getLongitud(), 'K');
-		Iterator<Atraccion> it = listaAtracciones.iterator();
-		while (it.hasNext()){
+	// Devuelve la distacia mas cercana del usuario a una atraccion
+	public int obtenerDistanciaMasCercanaAUsuario(Usuario usuario) {
+		int distancia = ((Atraccion) atracciones.get(0))
+				.calcularDistanciaAUsuario(usuario.getCoordenadas()
+						.getLatitud(), usuario.getCoordenadas().getLongitud(),
+						'K');
+		Iterator<Atraccion> it = atracciones.iterator();
+		while (it.hasNext()) {
 			Atraccion unaAtraccion = (Atraccion) it.next();
-			int distanciaAUsuario = unaAtraccion.calcularDistanciaAUsuario(usuario.getCoordenadas().getLatitud(), 
-					usuario.getCoordenadas().getLongitud(), 'K');
-			if(distanciaAUsuario < distancia){
+			int distanciaAUsuario = unaAtraccion.calcularDistanciaAUsuario(
+					usuario.getCoordenadas().getLatitud(), usuario
+							.getCoordenadas().getLongitud(), 'K');
+			if (distanciaAUsuario < distancia) {
 				distancia = distanciaAUsuario;
 			}
 		}
 		return distancia;
 	}
-	
-	public void setAtraccionAPromocion(Atraccion atraccion){
-		this.listaAtracciones.add(atraccion);
+
+	public void setAtraccionAPromocion(Atraccion atraccion) {
+		this.atracciones.add(atraccion);
 	}
-	
-	public List<Atraccion> getAtracciones(){
-		return this.listaAtracciones;
+
+	public List<Atraccion> getAtracciones() {
+		return this.atracciones;
 	}
-	
+
 	public double getCosto(Atraccion atraccion, Usuario usuario) {
 
 		double descuento = 0;
 		double costoAtraccion = atraccion.getCosto();
 
-		if(listaAtracciones.contains(atraccion) && this.obtenerDistanciaMasCercanaAUsuario(usuario) > 200){
-			
+		if (atracciones.contains(atraccion)
+				&& this.obtenerDistanciaMasCercanaAUsuario(usuario) > 200) {
+
 			descuento = costoAtraccion * 50 / 100;
 		}
-		
+
 		return costoAtraccion - descuento;
 	}
 }

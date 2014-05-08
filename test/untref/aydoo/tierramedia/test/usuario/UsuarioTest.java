@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import untref.aydoo.tierramedia.Atraccion;
 import untref.aydoo.tierramedia.Coordenada;
+import untref.aydoo.tierramedia.Promocion;
 import untref.aydoo.tierramedia.TipoDeAtraccion;
 import untref.aydoo.tierramedia.Usuario;
 import untref.aydoo.tierramedia.Visita;
@@ -18,7 +19,8 @@ public class UsuarioTest {
 	final double DELTA = 0.001;
 
 	private Usuario usuario;
-	List<Atraccion> atracciones;
+	private List<Atraccion> atracciones;
+	private List<Promocion> promociones;
 	private Atraccion atraccionCara;
 	private Atraccion atraccionBarata;
 	private Atraccion atraccionPorDefecto;
@@ -28,6 +30,7 @@ public class UsuarioTest {
 
 		usuario = new Usuario();
 		atracciones = new LinkedList<Atraccion>();
+		promociones = new LinkedList<Promocion>();
 
 		usuario.setCoordenadas(new Coordenada(0, 0));
 		usuario.setMinutosDisponibles(60);
@@ -112,7 +115,8 @@ public class UsuarioTest {
 	@Test
 	public void getVisitaSugeridaDeberiaRetornarVisita() {
 
-		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
+		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones,
+				promociones);
 
 		Assert.assertNotNull(visitaSugerida);
 	}
@@ -120,7 +124,8 @@ public class UsuarioTest {
 	@Test
 	public void getVisitaSugeridaDeberiaRetornarVisitaConPrimerAtraccionCara() {
 
-		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
+		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones,
+				promociones);
 		visitaSugerida.getItinerario().ordenarAtraccionesPorCosto();
 
 		Assert.assertSame(atraccionCara, visitaSugerida.getItinerario()
@@ -130,7 +135,8 @@ public class UsuarioTest {
 	@Test
 	public void getVisitaSugeridaDeberiaRetornar2VisitasPosibles() {
 
-		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
+		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones,
+				promociones);
 		visitaSugerida.getItinerario().ordenarAtraccionesPorCosto();
 
 		Assert.assertEquals(3, visitaSugerida.getItinerario().getAtracciones()
@@ -140,7 +146,8 @@ public class UsuarioTest {
 	@Test
 	public void getVisitaSugeridaDeberiaRetornarVisitaConPrimerAtraccionPreferida() {
 
-		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
+		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones,
+				promociones);
 		visitaSugerida.getItinerario().ordenarAtraccionesPorPreferencia(
 				usuario.getTipoDeAtraccionPreferida());
 
@@ -243,7 +250,8 @@ public class UsuarioTest {
 		atraccion.setTipo(TipoDeAtraccion.AVENTURA);
 		atracciones.add(atraccion);
 
-		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
+		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones,
+				promociones);
 
 		Assert.assertTrue(visitaSugerida.getItinerario().getAtracciones()
 				.size() < 3);
@@ -292,7 +300,8 @@ public class UsuarioTest {
 		atraccion.setTipo(TipoDeAtraccion.AVENTURA);
 		atracciones.add(atraccion);
 
-		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
+		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones,
+				promociones);
 
 		Assert.assertTrue(visitaSugerida.getItinerario().getAtracciones()
 				.size() < 3);

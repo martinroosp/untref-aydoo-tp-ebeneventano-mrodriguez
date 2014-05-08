@@ -52,15 +52,29 @@ public class Usuario {
 		return (int) (coordenadas.distancia(atraccion.getCoordenadas()) / (velocidadDeTraslado / 60));
 	}
 
-	public Visita getVisitaSugerida(List<Atraccion> atracciones) {
+	public Visita getVisitaSugerida(List<Atraccion> atracciones, List<Promocion> promociones) {
 
 		Visita visita = new Visita();
+		
+//		Iterator<Promocion> iteradorPromociones = promociones.iterator();
+//
+//		while (iteradorPromociones.hasNext()) {
+//
+//			Promocion promocion = iteradorPromociones.next();
+//
+//			visita.getItinerario().getAtracciones().add(promocion.get);
+//
+//			if (!puedeVisitar(visita.getItinerario())) {
+//
+//				visita.getItinerario().getAtracciones().remove(atraccion);
+//			}
+//		}
 
-		Iterator<Atraccion> iterator = atracciones.iterator();
+		Iterator<Atraccion> iteradorAtracciones = atracciones.iterator();
 
-		while (iterator.hasNext()) {
+		while (iteradorAtracciones.hasNext()) {
 
-			Atraccion atraccion = iterator.next();
+			Atraccion atraccion = iteradorAtracciones.next();
 
 			visita.getItinerario().getAtracciones().add(atraccion);
 

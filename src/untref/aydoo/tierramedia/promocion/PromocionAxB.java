@@ -10,17 +10,16 @@ import untref.aydoo.tierramedia.exception.PromocionNoAplicaException;
 
 public class PromocionAxB extends Promocion {
 
-	private List<Atraccion> necesarias;
 	private List<Atraccion> bonificadas;
 
 	public PromocionAxB() {
 
-		necesarias = new LinkedList<Atraccion>();
+		super();
 		bonificadas = new LinkedList<Atraccion>();
 	}
 
 	public List<Atraccion> getNecesarias() {
-		return necesarias;
+		return atracciones;
 	}
 
 	public List<Atraccion> getBonificadas() {
@@ -31,7 +30,7 @@ public class PromocionAxB extends Promocion {
 
 		double costo = 0;
 
-		if (paquete.containsAll(necesarias)) {
+		if (paquete.containsAll(atracciones)) {
 
 			Iterator<Atraccion> iterator = paquete.iterator();
 
