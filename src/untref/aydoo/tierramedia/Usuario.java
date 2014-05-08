@@ -24,19 +24,20 @@ public class Usuario {
 
 	}
 
-	public boolean puedeVisitar(List<Atraccion> atracciones) {
+	public boolean puedeVisitar(Itinerario itinerario) {
 
 		double costoTotal = 0;
 		int minutosNecesarios = 0;
 
-		Iterator<Atraccion> iterator = atracciones.iterator();
+		Iterator<Atraccion> iterator = itinerario.getAtracciones().iterator();
 
 		while (iterator.hasNext()) {
 
 			Atraccion atraccion = iterator.next();
 
 			costoTotal += atraccion.getCosto();
-			minutosNecesarios += atraccion.getMinutosNecesarios();
+			minutosNecesarios += atraccion.getMinutosNecesarios()
+					+ this.tiempoParaLlegar(atraccion);
 		}
 
 		boolean presupuestoSuficiente = this.getPresupuesto() >= costoTotal;
@@ -55,9 +56,18 @@ public class Usuario {
 
 		Visita visita = new Visita();
 
-		if (this.puedeVisitar(atracciones)) {
+		Iterator<Atraccion> iterator = atracciones.iterator();
 
-			visita.getItinerario().getAtracciones().addAll(atracciones);
+		while (puedeVisitar(visita.getItinerario()) && iterator.hasNext()) {
+
+			Atraccion atraccion = iterator.next();
+
+			visita.getItinerario().getAtracciones().add(atraccion);
+
+			if (!puedeVisitar(visita.getItinerario())) {
+
+				visita.getItinerario().getAtracciones().remove(atraccion);
+			}
 		}
 
 		return visita;

@@ -247,7 +247,57 @@ public class UsuarioTest {
 
 		Assert.assertTrue(visitaSugerida.getItinerario().getAtracciones()
 				.size() < 3);
-		Assert.assertEquals(0, visitaSugerida.getItinerario().getAtracciones()
+		Assert.assertEquals(2, visitaSugerida.getItinerario().getAtracciones()
 				.size());
 	}
+
+	@Test
+	public void getVisitaSugeridaNoDeberiaExcederDistanciaAlcanzable() {
+
+		Atraccion atraccion;
+		usuario = new Usuario();
+		atracciones = new LinkedList<Atraccion>();
+
+		usuario.setCoordenadas(new Coordenada(0, 0));
+		usuario.setMinutosDisponibles(10);
+		usuario.setPresupuesto(5000);
+		usuario.setTipoDeAtraccionPreferida(TipoDeAtraccion.DEGUSTACION);
+		usuario.setVelocidadDeTraslado(5);
+
+		atraccion = new Atraccion();
+		atraccion.setCoordenadas(new Coordenada(0, 0));
+		atraccion.setCosto(1);
+		atraccion.setCupoDeVisitantesDiarios(10);
+		atraccion.setMinutosNecesarios(0);
+		atraccion.setNombre("A1");
+		atraccion.setTipo(TipoDeAtraccion.AVENTURA);
+		atracciones.add(atraccion);
+
+		atraccion = new Atraccion();
+		atraccion.setCoordenadas(new Coordenada(0, 0));
+		atraccion.setCosto(1);
+		atraccion.setCupoDeVisitantesDiarios(10);
+		atraccion.setMinutosNecesarios(0);
+		atraccion.setNombre("A2");
+		atraccion.setTipo(TipoDeAtraccion.AVENTURA);
+		atracciones.add(atraccion);
+
+		atraccion = new Atraccion();
+		// Atracción inalcanzable.
+		atraccion.setCoordenadas(new Coordenada(1000, 0));
+		atraccion.setCosto(1);
+		atraccion.setCupoDeVisitantesDiarios(10);
+		atraccion.setMinutosNecesarios(0);
+		atraccion.setNombre("A3");
+		atraccion.setTipo(TipoDeAtraccion.AVENTURA);
+		atracciones.add(atraccion);
+
+		Visita visitaSugerida = usuario.getVisitaSugerida(atracciones);
+
+		Assert.assertTrue(visitaSugerida.getItinerario().getAtracciones()
+				.size() < 3);
+		Assert.assertEquals(2, visitaSugerida.getItinerario().getAtracciones()
+				.size());
+	}
+
 }
