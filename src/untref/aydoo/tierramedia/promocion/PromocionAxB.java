@@ -6,7 +6,6 @@ import java.util.List;
 
 import untref.aydoo.tierramedia.Atraccion;
 import untref.aydoo.tierramedia.Promocion;
-import untref.aydoo.tierramedia.exception.PromocionNoAplicaException;
 
 public class PromocionAxB extends Promocion {
 
@@ -26,28 +25,33 @@ public class PromocionAxB extends Promocion {
 		return bonificadas;
 	}
 
-	public double getCosto(List<Atraccion> paquete) throws Exception {
+	public double getCosto(List<Atraccion> paquete) {
 
 		double costo = 0;
 
-		if (paquete.containsAll(getAtracciones())) {
+		Iterator<Atraccion> iterator = paquete.iterator();
 
-			Iterator<Atraccion> iterator = paquete.iterator();
+		if (paquete.containsAll(getAtracciones())) {
 
 			while (iterator.hasNext()) {
 
 				Atraccion atraccion = iterator.next();
+
 				if (!bonificadas.contains(atraccion))
 					costo = costo + atraccion.getCosto();
-
 			}
-
-			return costo;
 
 		} else {
 
-			throw new PromocionNoAplicaException();
+			while (iterator.hasNext()) {
+
+				Atraccion atraccion = iterator.next();
+
+				costo = costo + atraccion.getCosto();
+			}
 		}
+
+		return costo;
 	}
 
 }

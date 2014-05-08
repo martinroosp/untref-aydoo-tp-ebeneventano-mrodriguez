@@ -3,17 +3,17 @@ package untref.aydoo.tierramedia.test.promocion;
 import java.util.LinkedList;
 import java.util.List;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import untref.aydoo.tierramedia.Atraccion;
-import untref.aydoo.tierramedia.exception.PromocionNoAplicaException;
 import untref.aydoo.tierramedia.promocion.PromocionAxB;
 
 public class PromocionAxBTest {
 
+	private final static double DELTA = 0.001;
+	
 	private Atraccion atraccionA;
 	private Atraccion atraccionB;
 	private Atraccion atraccionC;
@@ -48,9 +48,8 @@ public class PromocionAxBTest {
 
 	}
 
-	@Test(expected = PromocionNoAplicaException.class)
-	public void getCostoDeberiaExcepcionSiPromocionNoTieneAtraccionesNecesarias()
-			throws Exception {
+	@Test
+	public void getCostoDeberiaDarCostoTotalSiPromocionNoTieneAtraccionesNecesarias() {
 
 		PromocionAxB promocion = new PromocionAxB();
 
@@ -62,7 +61,7 @@ public class PromocionAxBTest {
 		paquete.add(atraccionA);
 		paquete.add(atraccionC);
 
-		promocion.getCosto(paquete);
+		Assert.assertEquals(400, promocion.getCosto(paquete), DELTA);
 
 	}
 
