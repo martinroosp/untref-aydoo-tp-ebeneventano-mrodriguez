@@ -11,18 +11,6 @@ public class Usuario {
 	private TipoDeAtraccion tipoDeAtraccionPreferida;
 	private Coordenada coordenadas;
 
-	public boolean puedeVisitar(Atraccion atraccion) {
-
-		boolean presupuestoSuficiente = this.getPresupuesto() >= atraccion
-				.getCosto();
-		boolean tiempoSuficiente = (this.minutosDisponibles - this
-				.tiempoParaLlegar(atraccion)) >= atraccion
-				.getMinutosNecesarios();
-
-		return presupuestoSuficiente && tiempoSuficiente;
-
-	}
-
 	public boolean puedeVisitar(Itinerario itinerario) {
 
 		double costoTotal = 0;

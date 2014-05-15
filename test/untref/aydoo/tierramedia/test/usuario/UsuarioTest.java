@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import untref.aydoo.tierramedia.Atraccion;
 import untref.aydoo.tierramedia.Coordenada;
+import untref.aydoo.tierramedia.Itinerario;
 import untref.aydoo.tierramedia.Promocion;
 import untref.aydoo.tierramedia.TipoDeAtraccion;
 import untref.aydoo.tierramedia.Usuario;
@@ -161,55 +162,75 @@ public class UsuarioTest {
 	@Test
 	public void puedeVisitarDeberiaRetornarVerdaderoSiPresupuestoEsSuficiente() {
 
-		Assert.assertTrue(usuario.puedeVisitar(atraccionPorDefecto));
+		Itinerario itinerario = new Itinerario();
+		itinerario.getAtracciones().add(atraccionPorDefecto);
+		
+		Assert.assertTrue(usuario.puedeVisitar(itinerario));
 	}
 
 	@Test
 	public void puedeVisitarDeberiaRetornarFalsoSiPresupuestoEsInsuficiente() {
 
+		Itinerario itinerario = new Itinerario();
+		itinerario.getAtracciones().add(atraccionPorDefecto);
+		
 		usuario.setPresupuesto(500);
 
-		Assert.assertFalse(usuario.puedeVisitar(atraccionPorDefecto));
+		Assert.assertFalse(usuario.puedeVisitar(itinerario));
 	}
 
 	@Test
 	public void puedeVisitarDeberiaRetornarVerdaderoSiDistanciaEsAlcanzable() {
 
-		Assert.assertTrue(usuario.puedeVisitar(atraccionPorDefecto));
-
+		Itinerario itinerario = new Itinerario();
+		itinerario.getAtracciones().add(atraccionPorDefecto);
+		
+		Assert.assertTrue(usuario.puedeVisitar(itinerario));
 	}
 
 	@Test
 	public void puedeVisitarDeberiaRetornarFalsoSiDistanciaEsInalcanzable() {
 
+		Itinerario itinerario = new Itinerario();
+		itinerario.getAtracciones().add(atraccionPorDefecto);
+		
 		usuario.setCoordenadas(new Coordenada(100, 0));
 
-		Assert.assertFalse(usuario.puedeVisitar(atraccionPorDefecto));
+		Assert.assertFalse(usuario.puedeVisitar(itinerario));
 	}
 
 	@Test
 	public void puedeVisitarDeberiaRetornarVerdaderoSiTiempoEsSuficiente() {
 
+		Itinerario itinerario = new Itinerario();
+		itinerario.getAtracciones().add(atraccionPorDefecto);
+		
 		atraccionPorDefecto.setMinutosNecesarios(10);
 
-		Assert.assertTrue(usuario.puedeVisitar(atraccionPorDefecto));
+		Assert.assertTrue(usuario.puedeVisitar(itinerario));
 	}
 
 	@Test
 	public void puedeVisitarDeberiaRetornarFalsoSiTiempoEsInsuficiente() {
 
+		Itinerario itinerario = new Itinerario();
+		itinerario.getAtracciones().add(atraccionPorDefecto);
+		
 		atraccionPorDefecto.setMinutosNecesarios(100);
 
-		Assert.assertFalse(usuario.puedeVisitar(atraccionPorDefecto));
+		Assert.assertFalse(usuario.puedeVisitar(itinerario));
 	}
 
 	@Test
 	public void puedeVisitarDeberiaRetornarFalsoSiTiempoDelUsuarioEsInsuficiente() {
 
+		Itinerario itinerario = new Itinerario();
+		itinerario.getAtracciones().add(atraccionPorDefecto);
+		
 		atraccionPorDefecto.setMinutosNecesarios(10);
 		usuario.setMinutosDisponibles(0);
 
-		Assert.assertFalse(usuario.puedeVisitar(atraccionPorDefecto));
+		Assert.assertFalse(usuario.puedeVisitar(itinerario));
 	}
 
 	@Test
