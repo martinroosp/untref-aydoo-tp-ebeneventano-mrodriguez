@@ -9,10 +9,6 @@ public class PromocionPorcentual extends Promocion {
 
 	private int descuentoPorcentual;
 
-	public int getDescuentoPorcentual() {
-		return descuentoPorcentual;
-	}
-
 	public void setDescuentoPorcentual(int descuentoPorcentual) {
 		this.descuentoPorcentual = descuentoPorcentual;
 	}
