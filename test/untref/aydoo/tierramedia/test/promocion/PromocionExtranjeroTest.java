@@ -1,5 +1,8 @@
 package untref.aydoo.tierramedia.test.promocion;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -98,13 +101,17 @@ public class PromocionExtranjeroTest {
 		usuario.setCoordenadas(coordenadaUsuario);
 
 		PromocionExtranjero promocionExt = new PromocionExtranjero();
+
 		promocionExt.setAtraccionAPromocion(atraccionA);
 		promocionExt.setAtraccionAPromocion(atraccionB);
 		promocionExt.setAtraccionAPromocion(atraccionC);
+		
+		List<Atraccion> paquete = new LinkedList<Atraccion>();
+		paquete.add(atraccionA);
+		paquete.add(atraccionB);
+		paquete.add(atraccionC);
 
-		double precio = atraccionC.getCosto();
-		Assert.assertEquals(precio, promocionExt.getCosto(atraccionC, usuario),
-				0);
+		Assert.assertEquals(600, promocionExt.getCosto(paquete, usuario), 0);
 	}
 
 	@Test
@@ -119,12 +126,17 @@ public class PromocionExtranjeroTest {
 		usuario.setCoordenadas(coordenadaUsuario);
 
 		PromocionExtranjero promocionExt = new PromocionExtranjero();
+		
 		promocionExt.setAtraccionAPromocion(atraccionA);
 		promocionExt.setAtraccionAPromocion(atraccionB);
 		promocionExt.setAtraccionAPromocion(atraccionC);
 
-		double precio = atraccionC.getCosto() / 2;
-		Assert.assertEquals(precio, promocionExt.getCosto(atraccionC, usuario),
-				0);
+		List<Atraccion> paquete = new LinkedList<Atraccion>();
+		paquete.add(atraccionA);
+		paquete.add(atraccionB);
+		paquete.add(atraccionC);
+
+		Assert.assertEquals(300, promocionExt.getCosto(paquete, usuario), 0);
 	}
+
 }
