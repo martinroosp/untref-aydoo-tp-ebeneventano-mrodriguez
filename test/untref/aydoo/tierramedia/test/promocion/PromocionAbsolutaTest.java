@@ -16,7 +16,7 @@ import untref.aydoo.tierramedia.promocion.PromocionAbsoluta;
 public class PromocionAbsolutaTest {
 
 	private final static double DELTA = 0.001;
-
+	
 	private Atraccion atraccionPorDefecto;
 
 	@Before
