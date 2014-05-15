@@ -14,11 +14,6 @@ public abstract class Promocion {
 		atracciones = new LinkedList<Atraccion>();
 	}
 
-	public Date getPeriodoVigencia() {
-
-		return periodoVigencia;
-	}
-
 	public void setPeriodoVigencia(Date periodoVigencia) {
 
 		this.periodoVigencia = periodoVigencia;
