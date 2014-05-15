@@ -12,7 +12,6 @@ import org.junit.Test;
 import untref.aydoo.tierramedia.Atraccion;
 import untref.aydoo.tierramedia.Coordenada;
 import untref.aydoo.tierramedia.TipoDeAtraccion;
-import untref.aydoo.tierramedia.promocion.PromocionAbsoluta;
 import untref.aydoo.tierramedia.promocion.PromocionPorcentual;
 
 public class PromocionPorcentualTest {

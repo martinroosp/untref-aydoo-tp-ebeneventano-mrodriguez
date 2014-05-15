@@ -69,6 +69,7 @@ public class PromocionAbsolutaTest {
 		Assert.assertEquals(500.0, promocion.getCosto(paquete), DELTA);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void vencidaDeberiaRetornarTrueSiPromocionEstaVencida() {
 
