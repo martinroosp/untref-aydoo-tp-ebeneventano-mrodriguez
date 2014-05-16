@@ -54,6 +54,26 @@ public class ItinerarioTest {
 	}
 
 	@Test
+	public void ordenarAtraccionesPorCostoDebeMantenerOrdenSiAtraccionesIguales() {
+
+		Itinerario itinerario = new Itinerario();
+
+		Atraccion atraccion1 = new Atraccion();
+		Atraccion atraccion2 = new Atraccion();
+		Atraccion atraccion3 = new Atraccion();
+
+		itinerario.getAtracciones().add(atraccion1);
+		itinerario.getAtracciones().add(atraccion2);
+		itinerario.getAtracciones().add(atraccion3);
+
+		itinerario.ordenarAtraccionesPorCosto();
+
+		Assert.assertEquals(atraccion1, itinerario.getAtracciones().get(0));
+		Assert.assertEquals(atraccion2, itinerario.getAtracciones().get(1));
+		Assert.assertEquals(atraccion3, itinerario.getAtracciones().get(2));
+	}
+
+	@Test
 	public void ordenarAtraccionesPorPreferenciaDebeDevolverLaOtraAtraccionPorDefectoPrimero() {
 		Itinerario itinerario = new Itinerario();
 		itinerario.getAtracciones().add(this.atraccionPorDefecto);
@@ -67,16 +87,59 @@ public class ItinerarioTest {
 	}
 
 	@Test
+	public void ordenarAtraccionesPorPreferenciaDebeMantenerOrdenSiAtraccionesIguales() {
+
+		Itinerario itinerario = new Itinerario();
+
+		Atraccion atraccion1 = new Atraccion();
+		Atraccion atraccion2 = new Atraccion();
+		Atraccion atraccion3 = new Atraccion();
+
+		itinerario.getAtracciones().add(atraccion1);
+		itinerario.getAtracciones().add(atraccion2);
+		itinerario.getAtracciones().add(atraccion3);
+
+		itinerario.ordenarAtraccionesPorPreferencia(TipoDeAtraccion.AVENTURA);
+
+		Assert.assertEquals(atraccion1, itinerario.getAtracciones().get(0));
+		Assert.assertEquals(atraccion2, itinerario.getAtracciones().get(1));
+		Assert.assertEquals(atraccion3, itinerario.getAtracciones().get(2));
+	}
+
+	@Test
 	public void ordenarAtraccionesPorCercaniaDebeDevolverLaOtraAtraccionPorDefectoPrimero() {
 		Itinerario itinerario = new Itinerario();
 		itinerario.getAtracciones().add(this.atraccionPorDefecto);
 		itinerario.getAtracciones().add(this.otraAtraccionPorDefecto);
 
-		itinerario
-				.ordenarAtraccionesPorCercania(new Coordenada(0, 0));
+		itinerario.ordenarAtraccionesPorCercania(new Coordenada(0, 0));
 
 		Assert.assertEquals(this.otraAtraccionPorDefecto, itinerario
 				.getAtracciones().get(0));
+	}
+
+	@Test
+	public void ordenarAtraccionesPorCercaniaDebeMantenerOrdenSiAtraccionesIguales() {
+
+		Itinerario itinerario = new Itinerario();
+
+		Atraccion atraccion1 = new Atraccion();
+		Atraccion atraccion2 = new Atraccion();
+		Atraccion atraccion3 = new Atraccion();
+		
+		atraccion1.setCoordenadas(new Coordenada(0, 0));
+		atraccion2.setCoordenadas(new Coordenada(0, 0));
+		atraccion3.setCoordenadas(new Coordenada(0, 0));
+
+		itinerario.getAtracciones().add(atraccion1);
+		itinerario.getAtracciones().add(atraccion2);
+		itinerario.getAtracciones().add(atraccion3);
+
+		itinerario.ordenarAtraccionesPorCercania(new Coordenada(0, 0));
+
+		Assert.assertEquals(atraccion1, itinerario.getAtracciones().get(0));
+		Assert.assertEquals(atraccion2, itinerario.getAtracciones().get(1));
+		Assert.assertEquals(atraccion3, itinerario.getAtracciones().get(2));
 	}
 
 }
