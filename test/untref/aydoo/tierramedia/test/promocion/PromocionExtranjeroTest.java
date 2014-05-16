@@ -14,6 +14,8 @@ import untref.aydoo.tierramedia.promocion.PromocionExtranjero;
 
 public class PromocionExtranjeroTest {
 
+	private final static double DELTA = 0.001;
+
 	private Atraccion atraccionA;
 	private Atraccion atraccionB;
 	private Atraccion atraccionC;
@@ -21,24 +23,25 @@ public class PromocionExtranjeroTest {
 	@Before
 	public void before() {
 
-		atraccionA = new Atraccion();
-		atraccionB = new Atraccion();
-		atraccionC = new Atraccion();
+		this.atraccionA = new Atraccion();
+		this.atraccionB = new Atraccion();
+		this.atraccionC = new Atraccion();
 
-		atraccionA.setCosto(100);
+		this.atraccionA.setCosto(100);
 		// Coordenadas temaiken
-		atraccionA.setCoordenadas(new Coordenada(-34.365953, -58.806653));
-		atraccionA.setNombre("Temaiken");
+		this.atraccionA.setCoordenadas(new Coordenada(-34.365953, -58.806653));
+		this.atraccionA.setNombre("Temaiken");
 
-		atraccionB.setCosto(200);
+		this.atraccionB.setCosto(200);
 		// Coordenadas glaciar perito moreno
-		atraccionB.setCoordenadas(new Coordenada(-32.9271118, -68.7838236));
-		atraccionB.setNombre("Glaciar Perito Moreno");
+		this.atraccionB
+				.setCoordenadas(new Coordenada(-32.9271118, -68.7838236));
+		this.atraccionB.setNombre("Glaciar Perito Moreno");
 
-		atraccionC.setCosto(300);
+		this.atraccionC.setCosto(300);
 		// Coordenadas aeroparque jorge newbery
-		atraccionC.setCoordenadas(new Coordenada(-34.55803, -58.417009));
-		atraccionC.setNombre("Aeroparque Jorge Newbery");
+		this.atraccionC.setCoordenadas(new Coordenada(-34.55803, -58.417009));
+		this.atraccionC.setNombre("Aeroparque Jorge Newbery");
 	}
 
 	@Test
@@ -61,9 +64,8 @@ public class PromocionExtranjeroTest {
 				longitudAtraccion);
 		atraccion.setCoordenadas(coordenadaAtraccion);
 
-		Assert.assertTrue(atraccion.calcularDistanciaAUsuario(usuario
-				.getCoordenadas().getLatitud(), usuario.getCoordenadas()
-				.getLongitud(), 'K') > 200);
+		Assert.assertTrue(atraccion.getCoordenadas().distancia(
+				usuario.getCoordenadas()) > 200);
 	}
 
 	@Test
@@ -77,16 +79,16 @@ public class PromocionExtranjeroTest {
 				longitudUsuario);
 		usuario.setCoordenadas(coordenadaUsuario);
 
-		int distanciaUsuarioAJorgeNewbery = atraccionC
-				.calcularDistanciaAUsuario(latitudUsuario, longitudUsuario, 'K');
+		double distanciaUsuarioAJorgeNewbery = this.atraccionC.getCoordenadas()
+				.distancia(usuario.getCoordenadas());
 
 		PromocionExtranjero promocionExt = new PromocionExtranjero();
-		promocionExt.setAtraccionAPromocion(atraccionA);
-		promocionExt.setAtraccionAPromocion(atraccionB);
-		promocionExt.setAtraccionAPromocion(atraccionC);
+		promocionExt.setAtraccionAPromocion(this.atraccionA);
+		promocionExt.setAtraccionAPromocion(this.atraccionB);
+		promocionExt.setAtraccionAPromocion(this.atraccionC);
 
 		Assert.assertEquals(distanciaUsuarioAJorgeNewbery,
-				promocionExt.obtenerDistanciaMasCercanaAUsuario(usuario));
+				promocionExt.obtenerDistanciaMasCercanaAUsuario(usuario), DELTA);
 	}
 
 	@Test
@@ -102,14 +104,14 @@ public class PromocionExtranjeroTest {
 
 		PromocionExtranjero promocionExt = new PromocionExtranjero();
 
-		promocionExt.setAtraccionAPromocion(atraccionA);
-		promocionExt.setAtraccionAPromocion(atraccionB);
-		promocionExt.setAtraccionAPromocion(atraccionC);
-		
+		promocionExt.setAtraccionAPromocion(this.atraccionA);
+		promocionExt.setAtraccionAPromocion(this.atraccionB);
+		promocionExt.setAtraccionAPromocion(this.atraccionC);
+
 		List<Atraccion> paquete = new LinkedList<Atraccion>();
-		paquete.add(atraccionA);
-		paquete.add(atraccionB);
-		paquete.add(atraccionC);
+		paquete.add(this.atraccionA);
+		paquete.add(this.atraccionB);
+		paquete.add(this.atraccionC);
 
 		Assert.assertEquals(600, promocionExt.getCosto(paquete, usuario), 0);
 	}
@@ -126,15 +128,15 @@ public class PromocionExtranjeroTest {
 		usuario.setCoordenadas(coordenadaUsuario);
 
 		PromocionExtranjero promocionExt = new PromocionExtranjero();
-		
-		promocionExt.setAtraccionAPromocion(atraccionA);
-		promocionExt.setAtraccionAPromocion(atraccionB);
-		promocionExt.setAtraccionAPromocion(atraccionC);
+
+		promocionExt.setAtraccionAPromocion(this.atraccionA);
+		promocionExt.setAtraccionAPromocion(this.atraccionB);
+		promocionExt.setAtraccionAPromocion(this.atraccionC);
 
 		List<Atraccion> paquete = new LinkedList<Atraccion>();
-		paquete.add(atraccionA);
-		paquete.add(atraccionB);
-		paquete.add(atraccionC);
+		paquete.add(this.atraccionA);
+		paquete.add(this.atraccionB);
+		paquete.add(this.atraccionC);
 
 		Assert.assertEquals(300, promocionExt.getCosto(paquete, usuario), 0);
 	}

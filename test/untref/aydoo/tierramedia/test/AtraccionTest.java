@@ -20,6 +20,6 @@ public class AtraccionTest {
 
 		Assert.assertEquals(setString, atraccion.getNombre());
 		Assert.assertEquals(setInteger, atraccion.getCupoDeVisitantesDiarios());
-	}
+}
 
 }
