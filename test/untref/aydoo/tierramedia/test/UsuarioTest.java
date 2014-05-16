@@ -407,5 +407,41 @@ public class UsuarioTest {
 		Assert.assertTrue(promocion.vencida());
 		Assert.assertFalse(visitaSugerida.getPromociones().contains(promocion));
 	}
+	
+	@Test
+	public void getVisitaSugeridaNoContienePromocionConAtraccionInalcanzable() {
+
+		this.usuario = new Usuario();
+		this.usuario.setCoordenadas(new Coordenada(0, 0));
+
+		Atraccion atraccionA = new Atraccion();
+		Atraccion atraccionB = new Atraccion();
+		Atraccion atraccionC = new Atraccion();
+
+		atraccionA.setCoordenadas(new Coordenada(1000, 1000));
+		atraccionB.setCoordenadas(new Coordenada(0, 0));
+		atraccionC.setCoordenadas(new Coordenada(0, 0));
+
+		PromocionAxB promocion = new PromocionAxB();
+
+		promocion.setPeriodoVigencia(new Date());
+
+		promocion.getNecesarias().add(atraccionA);
+		promocion.getNecesarias().add(atraccionB);
+		promocion.getBonificadas().add(atraccionC);
+
+		List<Atraccion> atracciones = new LinkedList<Atraccion>();
+		atracciones.add(atraccionA);
+		atracciones.add(atraccionB);
+		atracciones.add(atraccionC);
+
+		List<Promocion> promociones = new LinkedList<Promocion>();
+		promociones.add(promocion);
+
+		Visita visitaSugerida = this.usuario.getVisitaSugerida(atracciones,
+				promociones);
+
+		Assert.assertFalse(visitaSugerida.getPromociones().contains(promocion));
+	}
 
 }
