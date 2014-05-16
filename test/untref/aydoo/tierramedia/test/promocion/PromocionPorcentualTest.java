@@ -4,8 +4,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,13 +22,13 @@ public class PromocionPorcentualTest {
 	@Before
 	public void before() {
 
-		atraccionPorDefecto = new Atraccion();
-		atraccionPorDefecto.setCoordenadas(new Coordenada(0, 0));
-		atraccionPorDefecto.setCosto(700);
-		atraccionPorDefecto.setCupoDeVisitantesDiarios(10);
-		atraccionPorDefecto.setMinutosNecesarios(20);
-		atraccionPorDefecto.setNombre("Atracción por defecto");
-		atraccionPorDefecto.setTipo(TipoDeAtraccion.AVENTURA);
+		this.atraccionPorDefecto = new Atraccion();
+		this.atraccionPorDefecto.setCoordenadas(new Coordenada(0, 0));
+		this.atraccionPorDefecto.setCosto(700);
+		this.atraccionPorDefecto.setCupoDeVisitantesDiarios(10);
+		this.atraccionPorDefecto.setMinutosNecesarios(20);
+		this.atraccionPorDefecto.setNombre("Atracción por defecto");
+		this.atraccionPorDefecto.setTipo(TipoDeAtraccion.AVENTURA);
 	}
 
 	@Test
@@ -65,7 +64,7 @@ public class PromocionPorcentualTest {
 		Atraccion atraccion1 = new Atraccion();
 		Atraccion atraccion2 = new Atraccion();
 		Atraccion atraccion3 = new Atraccion();
-		
+
 		atraccion1.setCosto(150);
 		atraccion2.setCosto(80);
 		atraccion3.setCosto(120);
