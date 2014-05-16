@@ -108,13 +108,24 @@ public class ItinerarioTest {
 
 	@Test
 	public void ordenarAtraccionesPorCercaniaDebeDevolverLaOtraAtraccionPorDefectoPrimero() {
+		
 		Itinerario itinerario = new Itinerario();
-		itinerario.getAtracciones().add(this.atraccionPorDefecto);
-		itinerario.getAtracciones().add(this.otraAtraccionPorDefecto);
+		
+		Atraccion atraccion1 = new Atraccion();
+		Atraccion atraccion2 = new Atraccion();
+		Atraccion atraccion3 = new Atraccion();
+		
+		atraccion1.setCoordenadas(new Coordenada(10, 0));
+		atraccion2.setCoordenadas(new Coordenada(20, 0));
+		atraccion3.setCoordenadas(new Coordenada(5, 0));
+	
+		itinerario.getAtracciones().add(atraccion1);
+		itinerario.getAtracciones().add(atraccion2);
+		itinerario.getAtracciones().add(atraccion3);
 
 		itinerario.ordenarAtraccionesPorCercania(new Coordenada(0, 0));
 
-		Assert.assertEquals(this.otraAtraccionPorDefecto, itinerario
+		Assert.assertEquals(atraccion3, itinerario
 				.getAtracciones().get(0));
 	}
 
@@ -126,7 +137,7 @@ public class ItinerarioTest {
 		Atraccion atraccion1 = new Atraccion();
 		Atraccion atraccion2 = new Atraccion();
 		Atraccion atraccion3 = new Atraccion();
-		
+
 		atraccion1.setCoordenadas(new Coordenada(0, 0));
 		atraccion2.setCoordenadas(new Coordenada(0, 0));
 		atraccion3.setCoordenadas(new Coordenada(0, 0));

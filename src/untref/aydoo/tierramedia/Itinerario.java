@@ -50,7 +50,7 @@ public class Itinerario {
 				if (o1.getCoordenadas().distancia(coordenada) == o2
 						.getCoordenadas().distancia(coordenada))
 					return 0;
-				return o1.getCoordenadas().distancia(coordenada) > o2
+				return o1.getCoordenadas().distancia(coordenada) < o2
 						.getCoordenadas().distancia(coordenada) ? -1 : 1;
 			}
 		});
